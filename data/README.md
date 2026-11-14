@@ -7,3 +7,15 @@ Các file `example_*.json` chỉ minh họa định dạng, không đủ để n
 - **Câu thiếu evidence:** `id`, `split`, `question`, `answerable: false`, `expected_behavior: "search_and_abstain"`, `absence_reason`. Xem `agent_cases_example.json`.
 
 Không đưa `gold` hoặc nhãn đáp án vào model và retrieval tool. Ghi nguồn dữ liệu và quyền sử dụng. Cách chuyển một số định dạng Day 6: [starter/README.md](../starter/README.md).
+
+## Dữ liệu CP1 của bài làm này
+
+- `source/tutorial.pdf`: Python Tutorial 3.13.7, bản PDF có text layer.
+- `corpus_manifest.json`: nguồn, giấy phép, checksum, cấu hình chunk/embedding/index và số lượng benchmark.
+- `chunks.json`: 308 chunk được export từ collection `day6_b` của Chroma Day 6.
+- `questions.json`: 20 câu có evidence và 4 câu thiếu evidence, chia dev/test.
+
+Chạy `python scripts/validate_cp1.py` từ thư mục gốc để kiểm tra schema, tỷ lệ
+split, checksum và việc mỗi gold evidence nằm nguyên vẹn trong đúng chunk,
+`source_id` và trang. Persistent Chroma index không được commit; `chunks.json`
+là đầu vào để tái tạo index bằng đúng model ghi trong manifest.

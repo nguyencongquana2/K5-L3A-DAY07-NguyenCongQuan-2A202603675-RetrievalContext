@@ -28,6 +28,30 @@ Index một tài liệu thực tế từ **100 trang** có bảng, ảnh và bi�
 3. Dùng hoặc thay thế [starter](starter/README.md); bạn cần kết nối model và vector store thật.
 4. Chạy `python -m unittest discover -s tests -v`. Test mock chỉ kiểm tra code, không phải benchmark agent thật.
 
+## Tiến độ cá nhân
+
+### Checkpoint 1 — hoàn thành
+
+Corpus được kế thừa từ bài Day 6 của Nguyễn Công Quân (`2A202603675`): Python
+Tutorial 3.13.7, 101 trang nội dung, 308 chunk paragraph-aware và Chroma cosine.
+Thông tin nguồn, checksum, embedding và vector store nằm trong
+[`data/corpus_manifest.json`](data/corpus_manifest.json).
+
+Benchmark có 24 câu trong [`data/questions.json`](data/questions.json):
+
+- dev: 15 câu có evidence và 2 câu cần tìm rồi từ chối;
+- test: 5 câu có evidence và 2 câu cần tìm rồi từ chối.
+
+Kiểm tra CP1 (không chạy retrieval trên test):
+
+```powershell
+python scripts\validate_cp1.py
+python starter\baseline.py --chunks data\chunks.json --questions data\questions.json --split dev --output starter\results\cp1-dev-tfidf
+```
+
+Gold/evidence chỉ dùng để đánh giá, không được truyền vào query, retriever, context
+hoặc agent. Tập test được giữ lại cho bước đánh giá sau khi chốt cấu hình trên dev.
+
 ![Các bước thử nghiệm trên dev và đánh giá trên test](assets/experiment-loop.svg)
 
 Nộp code, cách chạy, cấu hình, benchmark, trace và [báo cáo](report/individual/MSSV_HoTen.md). Thời gian ở [checkpoints](CHECKPOINTS.md) là gợi ý, có thể điều chỉnh theo lớp và phạm vi thử nghiệm.

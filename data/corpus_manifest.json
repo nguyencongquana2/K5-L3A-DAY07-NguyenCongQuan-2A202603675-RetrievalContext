@@ -1,0 +1,50 @@
+{
+  "checkpoint": 1,
+  "prepared_at": "2026-11-14",
+  "source": {
+    "source_id": "python-tutorial-3.13.7",
+    "title": "Python Tutorial, Release 3.13.7",
+    "release": "3.13.7",
+    "path": "data/source/tutorial.pdf",
+    "sha256": "7e934cd7d3acbe31d5590391148231b2d185a92d0b843d4daee82913ec1907ef",
+    "license": {
+      "name": "Python Software Foundation License Version 2",
+      "url": "https://docs.python.org/3.13/license.html",
+      "note": "Documentation may be used, modified and distributed under the stated license; code examples are additionally Zero-Clause BSD licensed."
+    },
+    "physical_pages": 167,
+    "content_pages": 101
+  },
+  "chunking": {
+    "selected_day6_strategy": "B",
+    "method": "PDF text blocks grouped by paragraph",
+    "max_characters": 1000,
+    "chunk_count": 308,
+    "cross_page_chunks": false
+  },
+  "embedding": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "dimensions": 384,
+    "normalized": true
+  },
+  "vector_store": {
+    "engine": "Chroma 1.5.9",
+    "metric": "cosine",
+    "day6_collection": "day6_b",
+    "persistent_index_committed": false,
+    "rebuild_input": "data/chunks.json",
+    "note": "The local Day 6 Chroma index is not committed; rebuild it from chunks with the same embedding model."
+  },
+  "benchmark": {
+    "path": "data/questions.json",
+    "gold_is_evaluation_only": true,
+    "dev": {
+      "answerable": 15,
+      "unanswerable": 2
+    },
+    "test": {
+      "answerable": 5,
+      "unanswerable": 2
+    }
+  }
+}

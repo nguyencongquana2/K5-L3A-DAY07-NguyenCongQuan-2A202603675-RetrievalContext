@@ -36,6 +36,12 @@ def validate(chunks, questions):
         ids.add(q['id'])
         if q.get('split') not in ('dev', 'test') or not isinstance(q.get('question'), str) or not q['question'].strip():
             raise ValueError(f"question {q['id']}: split hoặc question không hợp lệ")
+        if q.get('answerable', True) is False:
+            if q.get('expected_behavior') != 'search_and_abstain' or not q.get('absence_reason'):
+                raise ValueError(f"question {q['id']}: câu thiếu evidence không hợp lệ")
+            if 'gold' in q:
+                raise ValueError(f"question {q['id']}: câu thiếu evidence không được có gold")
+            continue
         if not isinstance(q.get('expected_answer'), str) or not q['expected_answer'].strip():
             raise ValueError(f"question {q['id']}: expected_answer phải là chuỗi không rỗng")
         if not isinstance(q.get('gold'), list) or not q['gold']:
@@ -117,11 +123,13 @@ def main():
     # Do not inspect held-out test evidence during dev work.
     selected = [q for q in questions if q.get('split') == args.split]
     validate(chunks, selected)
+    retrieval_questions = [q for q in selected if q.get('answerable', True)]
     started = time.perf_counter()
     index = TfidfIndex(chunks)
     index_seconds = time.perf_counter() - started
-    traces = evaluate(index, selected)
+    traces = evaluate(index, retrieval_questions)
     summary = {'strategy': 'tfidf', 'split': args.split, 'n': len(traces),
+               'excluded_unanswerable': len(selected) - len(retrieval_questions),
                'hit1': sum(t['hit1'] for t in traces), 'hit3': sum(t['hit3'] for t in traces),
                'context_hit': sum(t['context_hit'] for t in traces),
                'avg_context_chars': statistics.mean(t['context_chars'] for t in traces),
