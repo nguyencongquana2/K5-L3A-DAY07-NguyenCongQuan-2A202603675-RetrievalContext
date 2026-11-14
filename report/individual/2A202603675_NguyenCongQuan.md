@@ -11,11 +11,18 @@
 
 ## Retrieval và thử nghiệm
 
-Sẽ hoàn thiện ở checkpoint 2–3. Kết quả TF-IDF chạy thử trên **dev** sau CP1: Hit@1 = 9/15, Evidence Hit@3 = 13/15; đây chưa phải cấu hình agent hoặc kết quả test.
+Kết quả TF-IDF chạy thử trên **dev** sau CP1: Hit@1 = 9/15, Evidence Hit@3 = 13/15; đây chưa phải kết quả test.
+
+Checkpoint 2 nối dense retrieval thật bằng Chroma cosine và cùng embedding model Day 6. Agent dùng câu hỏi gốc cộng query do model local tạo, lấy top-3 và đóng gói tối đa 3.500 ký tự. Ngưỡng dense `0.40` được thử trên dev để tránh trả lời khi evidence yếu. Persistent index nằm ở `artifacts/chroma/` và có thể tái tạo từ `data/chunks.json`.
 
 ## Agent và đánh giá
 
-Sẽ hoàn thiện ở checkpoint 2–4 sau khi xây agent, lưu trace và chốt cấu hình trên dev.
+Model thật `Qwen/Qwen2.5-0.5B-Instruct` chạy local trên CPU, không dùng API và chi phí dịch vụ bằng 0. Model tạo query tìm kiếm và sinh câu trả lời từ context; hệ thống chỉ chấp nhận citation thuộc context. Nếu model bỏ alias citation, policy chọn chunk trong context có độ phủ từ vựng cao nhất với câu trả lời. Nếu top dense score dưới ngưỡng hoặc model nói thiếu bằng chứng thì agent từ chối.
+
+Trace CP2 gồm q01, q07 và q21. q07 đúng đủ và citation hợp lệ; q21 từ chối đúng. q01 đúng ý chính nhưng thêm mô tả chưa chính xác về `-c/-m`, nên chấm 1/2 và citation không hỗ trợ toàn bộ câu. Đây là lỗi dev cần xử lý ở checkpoint 3 bằng prompt ngắn gọn/grounding tốt hơn.
+
+- Trace: `results/cp2_agent_traces.json`
+- Nhãn thủ công: `results/cp2_manual_review.json`
 
 ## Thử thách nâng cao
 

@@ -52,6 +52,23 @@ python starter\baseline.py --chunks data\chunks.json --questions data\questions.
 Gold/evidence chỉ dùng để đánh giá, không được truyền vào query, retriever, context
 hoặc agent. Tập test được giữ lại cho bước đánh giá sau khi chốt cấu hình trên dev.
 
+### Checkpoint 2 — hoàn thành
+
+- Dense retrieval thật: Chroma cosine và `all-MiniLM-L6-v2`, tương thích Day 6.
+- Agent model thật chạy local: `Qwen/Qwen2.5-0.5B-Instruct` trên CPU.
+- Model tạo semantic query và câu trả lời; hệ thống áp dụng context budget, ngưỡng
+  evidence, citation mapping và abstention.
+- Trace mẫu dev: [`results/cp2_agent_traces.json`](results/cp2_agent_traces.json).
+- Nhãn đọc thủ công: [`results/cp2_manual_review.json`](results/cp2_manual_review.json).
+
+Chạy lại CP2 sau khi cài `requirements.txt`:
+
+```powershell
+$env:HF_HUB_OFFLINE='1'  # bỏ dòng này ở lần tải model đầu tiên
+$env:TRANSFORMERS_OFFLINE='1'
+python scripts\run_cp2_agent.py
+```
+
 ![Các bước thử nghiệm trên dev và đánh giá trên test](assets/experiment-loop.svg)
 
 Nộp code, cách chạy, cấu hình, benchmark, trace và [báo cáo](report/individual/MSSV_HoTen.md). Thời gian ở [checkpoints](CHECKPOINTS.md) là gợi ý, có thể điều chỉnh theo lớp và phạm vi thử nghiệm.

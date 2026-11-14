@@ -61,15 +61,21 @@ def run_agent(question: str, controller: Controller, retriever: Retriever, *,
                            'context': context, 'context_ids': ids})
             # Send only the latest cumulative context; avoid multiplying the budget.
             history = [{'tool': 'search', 'queries': [e['query'] for e in events if e['event'] == 'search'],
-                        'context': context, 'context_ids': ids}]
+                        'context': context, 'context_ids': ids,
+                        'context_scores': {c['id']: c.get('score') for c in candidates if c['id'] in ids},
+                        'context_chunks': {c['id']: c['text'] for c in candidates if c['id'] in ids}}]
         elif action.get('action') == 'answer':
             answer, citations = action.get('answer'), action.get('citations')
             if not isinstance(answer, str) or not isinstance(citations, list) or any(not isinstance(i, str) for i in citations):
                 raise ValueError('answer/citations không hợp lệ')
             valid = bool(answer.strip() and citations and all(i in chunks and f'[{i}]' in answer for i in citations))
             if valid:
-                return {'status': 'answered', 'answer': answer, 'citations': citations, 'events': events + [{'event': 'answer'}]}
-            return {'status': 'abstain', 'answer': 'Không đủ bằng chứng để trả lời.', 'citations': [], 'events': events + [{'event': 'invalid_or_missing_citations'}]}
+                return {'status': 'answered', 'answer': answer, 'citations': citations,
+                        'events': events + [{'event': 'answer', 'model_answer': answer,
+                                             'model_citations': citations}]}
+            return {'status': 'abstain', 'answer': 'Không đủ bằng chứng để trả lời.', 'citations': [],
+                    'events': events + [{'event': 'invalid_or_missing_citations',
+                                         'model_answer': answer, 'model_citations': citations}]}
         else:
             raise ValueError('action phải là search hoặc answer')
     return {'status': 'abstain', 'answer': 'Không đủ bằng chứng để trả lời.', 'citations': [], 'events': events}
