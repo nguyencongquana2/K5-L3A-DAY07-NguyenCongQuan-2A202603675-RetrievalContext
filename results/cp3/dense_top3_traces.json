@@ -1,0 +1,1172 @@
+[
+  {
+    "query_id": "q01",
+    "split": "dev",
+    "query": "Where does Python store command-line arguments passed after the script name?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 12,
+        "evidence": "additional arguments thereafter are turned into a list of strings\nand assigned to the argv variable in the sys module"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p012:paragraph:000",
+        "text": "2.1.1 Argument Passing\n\nWhen known to the interpreter, the script name and additional arguments thereafter are turned into a list of strings\nand assigned to the argv variable in the sys module. You can access this list by executing import sys. The length\nof the list is at least one; when no script and no arguments are given, sys.argv[0] is an empty string. When the\nscript name is given as '-' (meaning standard input), sys.argv[0] is set to '-'. When -c command is used,\nsys.argv[0] is set to '-c'. When -m module is used, sys.argv[0] is set to the full name of the located module.\nOptions found after -c command or -m module are not consumed by the Python interpreter’s option processing but\nleft in sys.argv for the command or module to handle.\n\n2.1.2 Interactive Mode",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 12,
+        "metadata": {
+          "extraction_status": "ok",
+          "category": "interpreter",
+          "release": "3.13.7",
+          "chunking": "paragraph",
+          "paragraph_group": 0
+        },
+        "score": 0.69367516,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p011:paragraph:002",
+        "text": "The interpreter operates somewhat like the Unix shell: when called with standard input connected to a tty device, it\nreads and executes commands interactively; when called with a file name argument or with a file as standard input, it\nreads and executes a script from that file.\n\nA second way of starting the interpreter is python -c command [arg] ..., which executes the statement(s) in\ncommand, analogous to the shell’s -c option. Since Python statements often contain spaces or other characters that\nare special to the shell, it is usually advised to quote command in its entirety.\n\nSome Python modules are also useful as scripts. These can be invoked using python -m module [arg] ...,\nwhich executes the source file for module as if you had spelled out its full name on the command line.\n\nWhen a script file is used, it is sometimes useful to be able to run the script and enter interactive mode afterwards.\nThis can be done by passing -i before the script.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 11,
+        "metadata": {
+          "chunking": "paragraph",
+          "extraction_status": "ok",
+          "release": "3.13.7",
+          "category": "interpreter",
+          "paragraph_group": 2
+        },
+        "score": 0.65141171,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p052:paragraph:004",
+        "text": "The variable sys.path is a list of strings that determines the interpreter’s search path for modules. It is initialized\nto a default path taken from the environment variable PYTHONPATH, or from a built-in default if PYTHONPATH is not\nset. You can modify it using standard list operations:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 52,
+        "metadata": {
+          "category": "modules",
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "paragraph_group": 4
+        },
+        "score": 0.54643834,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p012:paragraph:000",
+      "python-tutorial-3.13.7:p011:paragraph:002",
+      "python-tutorial-3.13.7:p052:paragraph:004"
+    ],
+    "context_chars": 2269,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 14.937900006771088
+  },
+  {
+    "query_id": "q02",
+    "split": "dev",
+    "query": "Why does assigning a new value to one position in a Python string fail?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 18,
+        "evidence": "Python strings cannot be changed — they are immutable. Therefore, assigning to an indexed position in the string\nresults in an error"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p018:paragraph:000",
+        "text": ">>> word[4:42]\n'on'\n>>> word[42:]\n''\n\nPython strings cannot be changed — they are immutable. Therefore, assigning to an indexed position in the string\nresults in an error:\n\n>>> word[0] = 'J'\nTraceback (most recent call last):\n\nFile \"<stdin>\", line 1, in <module>\nTypeError: 'str' object does not support item assignment\n>>> word[2:] = 'py'\nTraceback (most recent call last):\n\nFile \"<stdin>\", line 1, in <module>\nTypeError: 'str' object does not support item assignment\n\nIf you need a different string, you should create a new one:\n\n>>> 'J' + word[1:]\n'Jython'\n>>> word[:2] + 'py'\n'Pypy'\n\nThe built-in function len() returns the length of a string:\n\n>>> s = 'supercalifragilisticexpialidocious'\n>>> len(s)\n34\n\nμ See also\n\ntextseq\n\nStrings are examples of sequence types, and support the common operations supported by such types.\n\nstring-methods\n\nStrings support a large number of methods for basic transformations and searching.\n\nf-strings\n\nString literals that have embedded expressions.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 18,
+        "metadata": {
+          "category": "basics",
+          "extraction_status": "ok",
+          "paragraph_group": 0,
+          "chunking": "paragraph",
+          "release": "3.13.7"
+        },
+        "score": 0.56897056,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p060:paragraph:000",
+        "text": "Some examples:\n\n>>> s = 'Hello, world.'\n>>> str(s)\n'Hello, world.'\n>>> repr(s)\n\"'Hello, world.'\"\n>>> str(1/7)\n'0.14285714285714285'\n>>> x = 10 * 3.25\n>>> y = 200 * 200\n>>> s = 'The value of x is ' + repr(x) + ', and y is ' + repr(y) + '...'\n>>> print(s)\nThe value of x is 32.5, and y is 40000...\n>>> # The repr() of a string adds string quotes and backslashes:\n>>> hello = 'hello, world\\n'\n>>> hellos = repr(hello)\n>>> print(hellos)\n'hello, world\\n'\n>>> # The argument to repr() may be any Python object:\n>>> repr((x, y, ('spam', 'eggs')))\n\"(32.5, 40000, ('spam', 'eggs'))\"\n\nThe string module contains a Template class that offers yet another way to substitute values into strings, using\nplaceholders like $x and replacing them with values from a dictionary, but offers much less control of the formatting.\n\n7.1.1 Formatted String Literals",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 60,
+        "metadata": {
+          "category": "input_output",
+          "chunking": "paragraph",
+          "paragraph_group": 0,
+          "release": "3.13.7",
+          "extraction_status": "ok"
+        },
+        "score": 0.49644566,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p048:paragraph:002",
+        "text": ">>> string1, string2, string3 = '', 'Trondheim', 'Hammer Dance'\n>>> non_null = string1 or string2 or string3\n>>> non_null\n'Trondheim'\n\nNote that in Python, unlike C, assignment inside expressions must be done explicitly with the walrus operator :=.\nThis avoids a common class of problems encountered in C programs: typing = in an expression when == was intended.\n\n5.8 Comparing Sequences and Other Types",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 48,
+        "metadata": {
+          "extraction_status": "ok",
+          "release": "3.13.7",
+          "paragraph_group": 2,
+          "chunking": "paragraph",
+          "category": "data_structures"
+        },
+        "score": 0.48328173,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p018:paragraph:000",
+      "python-tutorial-3.13.7:p060:paragraph:000",
+      "python-tutorial-3.13.7:p048:paragraph:002"
+    ],
+    "context_chars": 2477,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 7.023499812930822
+  },
+  {
+    "query_id": "q03",
+    "split": "dev",
+    "query": "What does list.append(x) do?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 39,
+        "evidence": "list.append(x)\n\nAdd an item to the end of the list. Similar to a[len(a):] = [x]."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p030:paragraph:003",
+        "text": "• The return statement returns with a value from a function. return without an expression argument returns\nNone. Falling off the end of a function also returns None.\n\n• The statement result.append(a) calls a method of the list object result. A method is a function that\n‘belongs’ to an object and is named obj.methodname, where obj is some object (this may be an expression),\nand methodname is the name of a method that is defined by the object’s type. Different types define different\nmethods. Methods of different types may have the same name without causing ambiguity. (It is possible to\ndefine your own object types and methods, using classes, see Classes) The method append() shown in the\n\n1 Actually, call by object reference would be a better description, since if a mutable object is passed, the caller will see any changes the callee\nmakes to it (items inserted into a list).",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 30,
+        "metadata": {
+          "extraction_status": "ok",
+          "paragraph_group": 3,
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "category": "control_flow"
+        },
+        "score": 0.70390594,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p039:paragraph:000",
+        "text": "CHAPTER\n\nFIVE\n\nDATA STRUCTURES\n\nThis chapter describes some things you’ve learned about already in more detail, and adds some new things as well.\n\n5.1 More on Lists\n\nThe list data type has some more methods. Here are all of the methods of list objects:\n\nlist.append(x)\n\nAdd an item to the end of the list. Similar to a[len(a):] = [x].\n\nlist.extend(iterable)\n\nExtend the list by appending all the items from the iterable. Similar to a[len(a):] = iterable.\n\nlist.insert(i, x)\n\nInsert an item at a given position. The first argument is the index of the element before which to insert, so a.\ninsert(0, x) inserts at the front of the list, and a.insert(len(a), x) is equivalent to a.append(x).\n\nlist.remove(x)\n\nRemove the first item from the list whose value is equal to x. It raises a ValueError if there is no such item.\n\nlist.pop([i])",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 39,
+        "metadata": {
+          "release": "3.13.7",
+          "chunking": "paragraph",
+          "paragraph_group": 0,
+          "extraction_status": "ok",
+          "category": "data_structures"
+        },
+        "score": 0.64493227,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p042:paragraph:002",
+        "text": "As we saw in the previous section, the inner list comprehension is evaluated in the context of the for that follows it,\nso this example is equivalent to:\n\n>>> transposed = []\n>>> for i in range(4):\n...\ntransposed.append([row[i] for row in matrix])\n...\n\n(continues on next page)",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 42,
+        "metadata": {
+          "chunking": "paragraph",
+          "category": "data_structures",
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "paragraph_group": 2
+        },
+        "score": 0.54348058,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p030:paragraph:003",
+      "python-tutorial-3.13.7:p039:paragraph:000",
+      "python-tutorial-3.13.7:p042:paragraph:002"
+    ],
+    "context_chars": 2240,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 8.175999857485294
+  },
+  {
+    "query_id": "q04",
+    "split": "dev",
+    "query": "Why can a mutable default argument retain values across later function calls?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 31,
+        "evidence": "The default value is evaluated only once. This makes a difference when the default is a mutable\nobject such as a list, dictionary, or instances of most classes."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p031:paragraph:001",
+        "text": "• giving one of the optional arguments: ask_ok('OK to overwrite the file?', 2)\n\n• or even giving all arguments: ask_ok('OK to overwrite the file?', 2, 'Come on, only yes\nor no!')\n\nThis example also introduces the in keyword. This tests whether or not a sequence contains a certain value.\n\nThe default values are evaluated at the point of function definition in the defining scope, so that\n\ni = 5\n\ndef f(arg=i):\n\nprint(arg)\n\ni = 6\nf()\n\nwill print 5.\n\nImportant warning: The default value is evaluated only once. This makes a difference when the default is a mutable\nobject such as a list, dictionary, or instances of most classes. For example, the following function accumulates the\narguments passed to it on subsequent calls:\n\ndef f(a, L=[]):\n\nL.append(a)\nreturn L\n\nprint(f(1))\nprint(f(2))\nprint(f(3))\n\nThis will print\n\n4.9. More on Defining Functions\n25",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 31,
+        "metadata": {
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "category": "control_flow",
+          "paragraph_group": 1,
+          "release": "3.13.7"
+        },
+        "score": 0.59653801,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p030:paragraph:001",
+        "text": "The actual parameters (arguments) to a function call are introduced in the local symbol table of the called function\nwhen it is called; thus, arguments are passed using call by value (where the value is always an object reference, not\nthe value of the object).1 When a function calls another function, or calls itself recursively, a new local symbol table\nis created for that call.\n\nA function definition associates the function name with the function object in the current symbol table. The interpreter\nrecognizes the object pointed to by that name as a user-defined function. Other names can also point to that same\nfunction object and can also be used to access the function:\n\n>>> fib\n<function fib at 10042ed0>\n>>> f = fib\n>>> f(100)\n0 1 1 2 3 5 8 13 21 34 55 89",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 30,
+        "metadata": {
+          "release": "3.13.7",
+          "chunking": "paragraph",
+          "category": "control_flow",
+          "paragraph_group": 1,
+          "extraction_status": "ok"
+        },
+        "score": 0.489999,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p083:paragraph:002",
+        "text": "What exactly happens when a method is called? You may have noticed that x.f() was called without an argument\nabove, even though the function definition for f() specified an argument. What happened to the argument? Surely\nPython raises an exception when a function that requires an argument is called without any — even if the argument\nisn’t actually used...\n\nActually, you may have guessed the answer: the special thing about methods is that the instance object is passed as the\nfirst argument of the function. In our example, the call x.f() is exactly equivalent to MyClass.f(x). In general,\ncalling a method with a list of n arguments is equivalent to calling the corresponding function with an argument list\nthat is created by inserting the method’s instance object before the first argument.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 83,
+        "metadata": {
+          "extraction_status": "ok",
+          "category": "classes",
+          "paragraph_group": 2,
+          "chunking": "paragraph",
+          "release": "3.13.7"
+        },
+        "score": 0.46928716,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p031:paragraph:001",
+      "python-tutorial-3.13.7:p030:paragraph:001",
+      "python-tutorial-3.13.7:p083:paragraph:002"
+    ],
+    "context_chars": 2662,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 6.326599977910519
+  },
+  {
+    "query_id": "q05",
+    "split": "dev",
+    "query": "In a function call, where must keyword arguments appear relative to positional arguments?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 32,
+        "evidence": "In a function call, keyword arguments must follow positional arguments."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p033:paragraph:001",
+        "text": "By default, arguments may be passed to a Python function either by position or explicitly by keyword. For readability\nand performance, it makes sense to restrict the way arguments can be passed so that a developer need only look at\nthe function definition to determine if items are passed by position, by position or keyword, or by keyword.\n\nA function definition may look like:\n\ndef f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):\n\n-----------\n----------\n----------\n|\n|\n|\n|\nPositional or keyword\n|\n|\n- Keyword only\n-- Positional only\n\nwhere / and * are optional. If used, these symbols indicate the kind of parameter by how the arguments may be passed\nto the function: positional-only, positional-or-keyword, and keyword-only. Keyword parameters are also referred to\nas named parameters.\n\nPositional-or-Keyword Arguments\n\nIf / and * are not present in the function definition, arguments may be passed to a function by position or by keyword.\n\n4.9. More on Defining Functions\n27",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 33,
+        "metadata": {
+          "category": "control_flow",
+          "chunking": "paragraph",
+          "extraction_status": "ok",
+          "release": "3.13.7",
+          "paragraph_group": 1
+        },
+        "score": 0.72252882,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p034:paragraph:000",
+        "text": "Positional-Only Parameters\n\nLooking at this in a bit more detail, it is possible to mark certain parameters as positional-only. If positional-only, the\nparameters’ order matters, and the parameters cannot be passed by keyword. Positional-only parameters are placed\nbefore a / (forward-slash). The / is used to logically separate the positional-only parameters from the rest of the\nparameters. If there is no / in the function definition, there are no positional-only parameters.\n\nParameters following the / may be positional-or-keyword or keyword-only.\n\nKeyword-Only Arguments\n\nTo mark parameters as keyword-only, indicating the parameters must be passed by keyword argument, place an * in\nthe arguments list just before the first keyword-only parameter.\n\nFunction Examples\n\nConsider the following example function definitions paying close attention to the markers / and *:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 34,
+        "metadata": {
+          "extraction_status": "ok",
+          "release": "3.13.7",
+          "chunking": "paragraph",
+          "category": "control_flow",
+          "paragraph_group": 0
+        },
+        "score": 0.65635014,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p032:paragraph:002",
+        "text": "In a function call, keyword arguments must follow positional arguments. All the keyword arguments passed must\nmatch one of the arguments accepted by the function (e.g. actor is not a valid argument for the parrot function),\nand their order is not important. This also includes non-optional arguments (e.g. parrot(voltage=1000) is valid\ntoo). No argument may receive a value more than once. Here’s an example that fails due to this restriction:\n\n>>> def function(a):\n...\npass\n...\n>>> function(0, a=0)\nTraceback (most recent call last):\n\nFile \"<stdin>\", line 1, in <module>\nTypeError: function() got multiple values for argument 'a'",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 32,
+        "metadata": {
+          "chunking": "paragraph",
+          "category": "control_flow",
+          "release": "3.13.7",
+          "paragraph_group": 2,
+          "extraction_status": "ok"
+        },
+        "score": 0.60130334,
+        "strategy": "dense_chroma",
+        "hit": true
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p033:paragraph:001",
+      "python-tutorial-3.13.7:p034:paragraph:000",
+      "python-tutorial-3.13.7:p032:paragraph:002"
+    ],
+    "context_chars": 2725,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 8.453399874269962
+  },
+  {
+    "query_id": "q06",
+    "split": "dev",
+    "query": "Can an existing tuple element be replaced by indexed assignment?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 44,
+        "evidence": "Tuples are immutable"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p044:paragraph:001",
+        "text": "Though tuples may seem similar to lists, they are often used in different situations and for different purposes. Tuples\nare immutable, and usually contain a heterogeneous sequence of elements that are accessed via unpacking (see later\nin this section) or indexing (or even by attribute in the case of namedtuples). Lists are mutable, and their elements\nare usually homogeneous and are accessed by iterating over the list.\n\nA special problem is the construction of tuples containing 0 or 1 items: the syntax has some extra quirks to accommodate these. Empty tuples are constructed by an empty pair of parentheses; a tuple with one item is constructed\nby following a value with a comma (it is not sufficient to enclose a single value in parentheses). Ugly, but effective.\nFor example:\n\n>>> empty = ()\n>>> singleton = 'hello',\n# <-- note trailing comma\n>>> len(empty)\n0\n>>> len(singleton)\n1\n>>> singleton\n('hello',)",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 44,
+        "metadata": {
+          "chunking": "paragraph",
+          "paragraph_group": 1,
+          "release": "3.13.7",
+          "category": "data_structures",
+          "extraction_status": "ok"
+        },
+        "score": 0.53613126,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p044:paragraph:002",
+        "text": "The statement t = 12345, 54321, 'hello!' is an example of tuple packing: the values 12345, 54321 and\n'hello!' are packed together in a tuple. The reverse operation is also possible:\n\n>>> x, y, z = t\n\nThis is called, appropriately enough, sequence unpacking and works for any sequence on the right-hand side. Sequence\nunpacking requires that there are as many variables on the left side of the equals sign as there are elements in the\nsequence. Note that multiple assignment is really just a combination of tuple packing and sequence unpacking.\n\n5.4 Sets\n\nPython also includes a data type for sets. A set is an unordered collection with no duplicate elements. Basic uses\ninclude membership testing and eliminating duplicate entries. Set objects also support mathematical operations like\nunion, intersection, difference, and symmetric difference.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 44,
+        "metadata": {
+          "chunking": "paragraph",
+          "category": "data_structures",
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "paragraph_group": 2
+        },
+        "score": 0.47679716,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p044:paragraph:000",
+        "text": ">>> t = 12345, 54321, 'hello!'\n>>> t[0]\n12345\n>>> t\n(12345, 54321, 'hello!')\n>>> # Tuples may be nested:\n>>> u = t, (1, 2, 3, 4, 5)\n>>> u\n((12345, 54321, 'hello!'), (1, 2, 3, 4, 5))\n>>> # Tuples are immutable:\n>>> t[0] = 88888\nTraceback (most recent call last):\n\nFile \"<stdin>\", line 1, in <module>\nTypeError: 'tuple' object does not support item assignment\n>>> # but they can contain mutable objects:\n>>> v = ([1, 2, 3], [3, 2, 1])\n>>> v\n([1, 2, 3], [3, 2, 1])\n\nAs you see, on output tuples are always enclosed in parentheses, so that nested tuples are interpreted correctly; they\nmay be input with or without surrounding parentheses, although often parentheses are necessary anyway (if the tuple\nis part of a larger expression). It is not possible to assign to the individual items of a tuple, however it is possible to\ncreate tuples which contain mutable objects, such as lists.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 44,
+        "metadata": {
+          "extraction_status": "ok",
+          "release": "3.13.7",
+          "category": "data_structures",
+          "paragraph_group": 0,
+          "chunking": "paragraph"
+        },
+        "score": 0.46689546,
+        "strategy": "dense_chroma",
+        "hit": true
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p044:paragraph:001",
+      "python-tutorial-3.13.7:p044:paragraph:002",
+      "python-tutorial-3.13.7:p044:paragraph:000"
+    ],
+    "context_chars": 2884,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 6.049100309610367
+  },
+  {
+    "query_id": "q07",
+    "split": "dev",
+    "query": "Within the data-structures chapter, what are two basic uses of a set?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 44,
+        "evidence": "Basic uses\ninclude membership testing and eliminating duplicate entries."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p045:paragraph:001",
+        "text": "Similarly to list comprehensions, set comprehensions are also supported:\n\n>>> a = {x for x in 'abracadabra' if x not in 'abc'}\n>>> a\n{'r', 'd'}\n\n5.5 Dictionaries\n\nAnother useful data type built into Python is the dictionary (see typesmapping). Dictionaries are sometimes found\nin other languages as “associative memories” or “associative arrays”. Unlike sequences, which are indexed by a range\nof numbers, dictionaries are indexed by keys, which can be any immutable type; strings and numbers can always be\nkeys. Tuples can be used as keys if they contain only strings, numbers, or tuples; if a tuple contains any mutable\nobject either directly or indirectly, it cannot be used as a key. You can’t use lists as keys, since lists can be modified\nin place using index assignments, slice assignments, or methods like append() and extend().",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 45,
+        "metadata": {
+          "category": "data_structures",
+          "chunking": "paragraph",
+          "paragraph_group": 1,
+          "extraction_status": "ok",
+          "release": "3.13.7"
+        },
+        "score": 0.45919293,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p044:paragraph:002",
+        "text": "The statement t = 12345, 54321, 'hello!' is an example of tuple packing: the values 12345, 54321 and\n'hello!' are packed together in a tuple. The reverse operation is also possible:\n\n>>> x, y, z = t\n\nThis is called, appropriately enough, sequence unpacking and works for any sequence on the right-hand side. Sequence\nunpacking requires that there are as many variables on the left side of the equals sign as there are elements in the\nsequence. Note that multiple assignment is really just a combination of tuple packing and sequence unpacking.\n\n5.4 Sets\n\nPython also includes a data type for sets. A set is an unordered collection with no duplicate elements. Basic uses\ninclude membership testing and eliminating duplicate entries. Set objects also support mathematical operations like\nunion, intersection, difference, and symmetric difference.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 44,
+        "metadata": {
+          "paragraph_group": 2,
+          "release": "3.13.7",
+          "chunking": "paragraph",
+          "category": "data_structures",
+          "extraction_status": "ok"
+        },
+        "score": 0.43126231,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p043:paragraph:002",
+        "text": "We saw that lists and strings have many common properties, such as indexing and slicing operations. They are two\nexamples of sequence data types (see typesseq). Since Python is an evolving language, other sequence data types may\nbe added. There is also another standard sequence data type: the tuple.\n\nA tuple consists of a number of values separated by commas, for instance:\n\n5.2. The del statement\n37",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 43,
+        "metadata": {
+          "category": "data_structures",
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "paragraph_group": 2
+        },
+        "score": 0.42117506,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p045:paragraph:001",
+      "python-tutorial-3.13.7:p044:paragraph:002",
+      "python-tutorial-3.13.7:p043:paragraph:002"
+    ],
+    "context_chars": 2329,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 7.470599841326475
+  },
+  {
+    "query_id": "q08",
+    "split": "dev",
+    "query": "Which kinds of Python objects may be used as dictionary keys?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 45,
+        "evidence": "dictionaries are indexed by keys, which can be any immutable type; strings and numbers can always be\nkeys"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p045:paragraph:001",
+        "text": "Similarly to list comprehensions, set comprehensions are also supported:\n\n>>> a = {x for x in 'abracadabra' if x not in 'abc'}\n>>> a\n{'r', 'd'}\n\n5.5 Dictionaries\n\nAnother useful data type built into Python is the dictionary (see typesmapping). Dictionaries are sometimes found\nin other languages as “associative memories” or “associative arrays”. Unlike sequences, which are indexed by a range\nof numbers, dictionaries are indexed by keys, which can be any immutable type; strings and numbers can always be\nkeys. Tuples can be used as keys if they contain only strings, numbers, or tuples; if a tuple contains any mutable\nobject either directly or indirectly, it cannot be used as a key. You can’t use lists as keys, since lists can be modified\nin place using index assignments, slice assignments, or methods like append() and extend().",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 45,
+        "metadata": {
+          "chunking": "paragraph",
+          "extraction_status": "ok",
+          "category": "data_structures",
+          "release": "3.13.7",
+          "paragraph_group": 1
+        },
+        "score": 0.73069346,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p045:paragraph:002",
+        "text": "It is best to think of a dictionary as a set of key: value pairs, with the requirement that the keys are unique (within\none dictionary). A pair of braces creates an empty dictionary: {}. Placing a comma-separated list of key:value pairs\nwithin the braces adds initial key:value pairs to the dictionary; this is also the way dictionaries are written on output.\n\nThe main operations on a dictionary are storing a value with some key and extracting the value given the key. It is also\npossible to delete a key:value pair with del. If you store using a key that is already in use, the old value associated\nwith that key is forgotten. It is an error to extract a value using a non-existent key.\n\nPerforming list(d) on a dictionary returns a list of all the keys used in the dictionary, in insertion order (if you\nwant it sorted, just use sorted(d) instead). To check whether a single key is in the dictionary, use the in keyword.\n\nHere is a small example using a dictionary:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 45,
+        "metadata": {
+          "release": "3.13.7",
+          "paragraph_group": 2,
+          "chunking": "paragraph",
+          "category": "data_structures",
+          "extraction_status": "ok"
+        },
+        "score": 0.56654084,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p054:paragraph:002",
+        "text": "'input', 'int', 'isinstance', 'issubclass',\n'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview',\n'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property',\n'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice',\n'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars',\n'zip']\n\n6.4 Packages\n\nPackages are a way of structuring Python’s module namespace by using “dotted module names”. For example, the\nmodule name A.B designates a submodule named B in a package named A. Just like the use of modules saves the\nauthors of different modules from having to worry about each other’s global variable names, the use of dotted module\nnames saves the authors of multi-module packages like NumPy or Pillow from having to worry about each other’s\nmodule names.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 54,
+        "metadata": {
+          "category": "modules",
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "paragraph_group": 2
+        },
+        "score": 0.54447925,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p045:paragraph:001",
+      "python-tutorial-3.13.7:p045:paragraph:002",
+      "python-tutorial-3.13.7:p054:paragraph:002"
+    ],
+    "context_chars": 2869,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 6.23099971562624
+  },
+  {
+    "query_id": "q09",
+    "split": "dev",
+    "query": "Why can a script in the script directory shadow a standard-library module?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 52,
+        "evidence": "The directory containing the script being run is placed\nat the beginning of the search path, ahead of the standard library path."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p052:paragraph:000",
+        "text": "After initialization, Python programs can modify sys.path. The directory containing the script being run is placed\nat the beginning of the search path, ahead of the standard library path. This means that scripts in that directory will\nbe loaded instead of modules of the same name in the library directory. This is an error unless the replacement is\nintended. See section Standard Modules for more information.\n\n6.1.3 “Compiled” Python files\n\nTo speed up loading modules, Python caches the compiled version of each module in the __pycache__ directory\nunder the name module.version.pyc, where the version encodes the format of the compiled file; it generally\ncontains the Python version number. For example, in CPython release 3.3 the compiled version of spam.py would\nbe cached as __pycache__/spam.cpython-33.pyc. This naming convention allows compiled modules from\ndifferent releases and different versions of Python to coexist.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 52,
+        "metadata": {
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "paragraph_group": 0,
+          "category": "modules",
+          "release": "3.13.7"
+        },
+        "score": 0.52161634,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p051:paragraph:002",
+        "text": "On file systems which support symlinks, the directory containing the input script is calculated after the symlink\nis followed. In other words the directory containing the symlink is not added to the module search path.\n\n6.1. More on Modules\n45",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 51,
+        "metadata": {
+          "chunking": "paragraph",
+          "category": "modules",
+          "paragraph_group": 2,
+          "release": "3.13.7",
+          "extraction_status": "ok"
+        },
+        "score": 0.45521665,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p051:paragraph:001",
+        "text": "If the module is imported, the code is not run:\n\n>>> import fibo\n>>>\n\nThis is often used either to provide a convenient user interface to a module, or for testing purposes (running the\nmodule as a script executes a test suite).\n\n6.1.2 The Module Search Path\n\nWhen a module named spam is imported, the interpreter first searches for a built-in module with that name. These\nmodule names are listed in sys.builtin_module_names. If not found, it then searches for a file named spam.py\nin a list of directories given by the variable sys.path. sys.path is initialized from these locations:\n\n• The directory containing the input script (or the current directory when no file is specified).\n\n• PYTHONPATH (a list of directory names, with the same syntax as the shell variable PATH).\n\n• The installation-dependent default (by convention including a site-packages directory, handled by the site\nmodule).\n\nMore details are at sys-path-init.\n\n® Note",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 51,
+        "metadata": {
+          "release": "3.13.7",
+          "paragraph_group": 1,
+          "category": "modules",
+          "extraction_status": "ok",
+          "chunking": "paragraph"
+        },
+        "score": 0.4530614,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p052:paragraph:000",
+      "python-tutorial-3.13.7:p051:paragraph:002",
+      "python-tutorial-3.13.7:p051:paragraph:001"
+    ],
+    "context_chars": 2356,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 6.2303002923727036
+  },
+  {
+    "query_id": "q10",
+    "split": "dev",
+    "query": "Within the modules chapter, where can a package define the names exported by a wildcard import?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 55,
+        "evidence": "__init__.py can just be an empty file, but it can also execute initialization code for the package or set the __all__\nvariable"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p056:paragraph:002",
+        "text": "Although certain modules are designed to export only names that follow certain patterns when you use import *,\nit is still considered bad practice in production code.\n\nRemember, there is nothing wrong with using from package import specific_submodule! In fact, this is\nthe recommended notation unless the importing module needs to use submodules with the same name from different\npackages.\n\n6.4.2 Intra-package References\n\nWhen packages are structured into subpackages (as with the sound package in the example), you can use absolute\nimports to refer to submodules of siblings packages. For example, if the module sound.filters.vocoder needs\nto use the echo module in the sound.effects package, it can use from sound.effects import echo.\n\nYou can also write relative imports, with the from module import name form of import statement. These imports use leading dots to indicate the current and parent packages involved in the relative import. From the surround\nmodule for example, you might use:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 56,
+        "metadata": {
+          "category": "modules",
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "paragraph_group": 2,
+          "chunking": "paragraph"
+        },
+        "score": 0.64706296,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p057:paragraph:000",
+        "text": "6.4.3 Packages in Multiple Directories\n\nPackages support one more special attribute, __path__. This is initialized to be a sequence of strings containing the\nname of the directory holding the package’s __init__.py before the code in that file is executed. This variable can\nbe modified; doing so affects future searches for modules and subpackages contained in the package.\n\nWhile this feature is not often needed, it can be used to extend the set of modules found in a package.\n\n6.4. Packages\n51",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 57,
+        "metadata": {
+          "chunking": "paragraph",
+          "paragraph_group": 0,
+          "release": "3.13.7",
+          "category": "modules",
+          "extraction_status": "ok"
+        },
+        "score": 0.55450916,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p050:paragraph:001",
+        "text": "Modules can import other modules. It is customary but not required to place all import statements at the beginning\nof a module (or script, for that matter). The imported module names, if placed at the top level of a module (outside\nany functions or classes), are added to the module’s global namespace.\n\nThere is a variant of the import statement that imports names from a module directly into the importing module’s\nnamespace. For example:\n\n>>> from fibo import fib, fib2\n>>> fib(500)\n0 1 1 2 3 5 8 13 21 34 55 89 144 233 377\n\nThis does not introduce the module name from which the imports are taken in the local namespace (so in the example,\nfibo is not defined).\n\nThere is even a variant to import all names that a module defines:\n\n>>> from fibo import *\n>>> fib(500)\n0 1 1 2 3 5 8 13 21 34 55 89 144 233 377",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 50,
+        "metadata": {
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "category": "modules",
+          "extraction_status": "ok",
+          "paragraph_group": 1
+        },
+        "score": 0.55215979,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p056:paragraph:002",
+      "python-tutorial-3.13.7:p057:paragraph:000",
+      "python-tutorial-3.13.7:p050:paragraph:001"
+    ],
+    "context_chars": 2549,
+    "hit1": false,
+    "hit3": false,
+    "context_hit": false,
+    "elapsed_ms": 7.214200217276812
+  },
+  {
+    "query_id": "q11",
+    "split": "dev",
+    "query": "Which JSON function serializes an object directly to an open text file?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 65,
+        "evidence": "Another variant of the dumps() function, called dump(), simply serializes the object to a text file."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p065:paragraph:003",
+        "text": "Another variant of the dumps() function, called dump(), simply serializes the object to a text file. So if f is a text\nfile object opened for writing, we can do this:\n\njson.dump(x, f)\n\nTo decode the object again, if f is a binary file or text file object which has been opened for reading:\n\n7.2. Reading and Writing Files\n59",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 65,
+        "metadata": {
+          "paragraph_group": 3,
+          "category": "input_output",
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "release": "3.13.7"
+        },
+        "score": 0.61664277,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p065:paragraph:001",
+        "text": "In text files (those opened without a b in the mode string), only seeks relative to the beginning of the file are allowed\n(the exception being seeking to the very file end with seek(0, 2)) and the only valid offset values are those returned\nfrom the f.tell(), or zero. Any other offset value produces undefined behaviour.\n\nFile objects have some additional methods, such as isatty() and truncate() which are less frequently used;\nconsult the Library Reference for a complete guide to file objects.\n\n7.2.2 Saving structured data with json\n\nStrings can easily be written to and read from a file. Numbers take a bit more effort, since the read() method only\nreturns strings, which will have to be passed to a function like int(), which takes a string like '123' and returns its\nnumeric value 123. When you want to save more complex data types like nested lists and dictionaries, parsing and\nserializing by hand becomes complicated.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 65,
+        "metadata": {
+          "chunking": "paragraph",
+          "extraction_status": "ok",
+          "category": "input_output",
+          "release": "3.13.7",
+          "paragraph_group": 1
+        },
+        "score": 0.59243047,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p065:paragraph:002",
+        "text": "Rather than having users constantly writing and debugging code to save complicated data types to files, Python allows\nyou to use the popular data interchange format called JSON (JavaScript Object Notation). The standard module called\njson can take Python data hierarchies, and convert them to string representations; this process is called serializing.\nReconstructing the data from the string representation is called deserializing. Between serializing and deserializing,\nthe string representing the object may have been stored in a file or data, or sent over a network connection to some\ndistant machine.\n\n® Note\n\nThe JSON format is commonly used by modern applications to allow for data exchange. Many programmers are\nalready familiar with it, which makes it a good choice for interoperability.\n\nIf you have an object x, you can view its JSON string representation with a simple line of code:\n\n>>> import json\n>>> x = [1, 'simple', 'list']\n>>> json.dumps(x)\n'[1, \"simple\", \"list\"]'",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 65,
+        "metadata": {
+          "chunking": "paragraph",
+          "category": "input_output",
+          "paragraph_group": 2,
+          "release": "3.13.7",
+          "extraction_status": "ok"
+        },
+        "score": 0.58027583,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p065:paragraph:003",
+      "python-tutorial-3.13.7:p065:paragraph:001",
+      "python-tutorial-3.13.7:p065:paragraph:002"
+    ],
+    "context_chars": 2482,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 6.752599962055683
+  },
+  {
+    "query_id": "q12",
+    "split": "dev",
+    "query": "What resource-safety advantage does with provide when working with a file?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 63,
+        "evidence": "The advantage is that the file is properly\nclosed after its suite finishes, even if an exception is raised at some point."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p063:paragraph:003",
+        "text": "It is good practice to use the with keyword when dealing with file objects. The advantage is that the file is properly\nclosed after its suite finishes, even if an exception is raised at some point. Using with is also much shorter than\nwriting equivalent try-finally blocks:\n\n>>> with open('workfile', encoding=\"utf-8\") as f:\n...\nread_data = f.read()\n\n>>> # We can check that the file has been automatically closed.\n>>> f.closed\nTrue\n\nIf you’re not using the with keyword, then you should call f.close() to close the file and immediately free up any\nsystem resources used by it.\n\nÁ Warning\n\nCalling f.write() without using the with keyword or calling f.close() might result in the arguments of\nf.write() not being completely written to the disk, even if the program exits successfully.\n\n7.2. Reading and Writing Files\n57",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 63,
+        "metadata": {
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "category": "input_output",
+          "paragraph_group": 3,
+          "chunking": "paragraph"
+        },
+        "score": 0.52746832,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p093:paragraph:000",
+        "text": "CHAPTER\n\nTEN\n\nBRIEF TOUR OF THE STANDARD LIBRARY\n\n10.1 Operating System Interface\n\nThe os module provides dozens of functions for interacting with the operating system:\n\n>>> import os\n>>> os.getcwd()\n# Return the current working directory\n'C:\\\\Python313'\n>>> os.chdir('/server/accesslogs')\n# Change current working directory\n>>> os.system('mkdir today')\n# Run the command mkdir in the system shell\n0\n\nBe sure to use the import os style instead of from os import *. This will keep os.open() from shadowing\nthe built-in open() function which operates much differently.\n\nThe built-in dir() and help() functions are useful as interactive aids for working with large modules like os:\n\n>>> import os\n>>> dir(os)\n<returns a list of all module functions>\n>>> help(os)\n<returns an extensive manual page created from the module's docstrings>\n\nFor daily file and directory management tasks, the shutil module provides a higher level interface that is easier to\nuse:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 93,
+        "metadata": {
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "category": "standard_library",
+          "paragraph_group": 0,
+          "release": "3.13.7"
+        },
+        "score": 0.42371929,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p074:paragraph:000",
+        "text": "8.8 Predefined Clean-up Actions\n\nSome objects define standard clean-up actions to be undertaken when the object is no longer needed, regardless of\nwhether or not the operation using the object succeeded or failed. Look at the following example, which tries to open\na file and print its contents to the screen.\n\nfor line in open(\"myfile.txt\"):\n\nprint(line, end=\"\")\n\nThe problem with this code is that it leaves the file open for an indeterminate amount of time after this part of the\ncode has finished executing. This is not an issue in simple scripts, but can be a problem for larger applications. The\nwith statement allows objects like files to be used in a way that ensures they are always cleaned up promptly and\ncorrectly.\n\nwith open(\"myfile.txt\") as f:\n\nfor line in f:\n\nprint(line, end=\"\")",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 74,
+        "metadata": {
+          "chunking": "paragraph",
+          "extraction_status": "ok",
+          "paragraph_group": 0,
+          "category": "exceptions",
+          "release": "3.13.7"
+        },
+        "score": 0.39505708,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p063:paragraph:003",
+      "python-tutorial-3.13.7:p093:paragraph:000",
+      "python-tutorial-3.13.7:p074:paragraph:000"
+    ],
+    "context_chars": 2814,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 7.585900370031595
+  },
+  {
+    "query_id": "q13",
+    "split": "dev",
+    "query": "How can one except clause catch several exception types?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 68,
+        "evidence": "An except clause may name multiple exceptions as a parenthesized tuple"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p068:paragraph:003",
+        "text": "A class in an except clause matches exceptions which are instances of the class itself or one of its derived classes\n(but not the other way around — an except clause listing a derived class does not match instances of its base classes).\nFor example, the following code will print B, C, D in that order:\n\nclass B(Exception):\n\npass\n\n(continues on next page)",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 68,
+        "metadata": {
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "paragraph_group": 3,
+          "category": "exceptions"
+        },
+        "score": 0.68324703,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p074:paragraph:002",
+        "text": "+ Exception Group Traceback (most recent call last):\n|\nFile \"<stdin>\", line 1, in <module>\n|\nf()\n|\n~^^\n|\nFile \"<stdin>\", line 3, in f\n|\nraise ExceptionGroup('there were problems', excs)\n| ExceptionGroup: there were problems (2 sub-exceptions)\n+-+---------------- 1 ----------------\n\n| OSError: error 1\n+---------------- 2 ----------------\n| SystemError: error 2\n+------------------------------------\n>>> try:\n...\nf()\n... except Exception as e:\n...\nprint(f'caught {type(e)}: e')\n...\ncaught <class 'ExceptionGroup'>: e\n>>>\n\nBy using except* instead of except, we can selectively handle only the exceptions in the group that match a certain\ntype. In the following example, which shows a nested exception group, each except* clause extracts from the group\nexceptions of a certain type while letting all other exceptions propagate to other clauses and eventually to be reraised.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 74,
+        "metadata": {
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "paragraph_group": 2,
+          "extraction_status": "ok",
+          "category": "exceptions"
+        },
+        "score": 0.61772275,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p068:paragraph:002",
+        "text": "• If an exception occurs during execution of the try clause, the rest of the clause is skipped. Then, if its type\nmatches the exception named after the except keyword, the except clause is executed, and then execution\ncontinues after the try/except block.\n\n• If an exception occurs which does not match the exception named in the except clause, it is passed on to outer\ntry statements; if no handler is found, it is an unhandled exception and execution stops with an error message.\n\nA try statement may have more than one except clause, to specify handlers for different exceptions. At most one\nhandler will be executed. Handlers only handle exceptions that occur in the corresponding try clause, not in other\nhandlers of the same try statement. An except clause may name multiple exceptions as a parenthesized tuple, for\nexample:\n\n... except (RuntimeError, TypeError, NameError):\n...\npass",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 68,
+        "metadata": {
+          "paragraph_group": 2,
+          "extraction_status": "ok",
+          "category": "exceptions",
+          "release": "3.13.7",
+          "chunking": "paragraph"
+        },
+        "score": 0.59528148,
+        "strategy": "dense_chroma",
+        "hit": true
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p068:paragraph:003",
+      "python-tutorial-3.13.7:p074:paragraph:002",
+      "python-tutorial-3.13.7:p068:paragraph:002"
+    ],
+    "context_chars": 2364,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 6.826099939644337
+  },
+  {
+    "query_id": "q14",
+    "split": "dev",
+    "query": "Why is a try statement's else clause preferable to placing extra code inside try?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 70,
+        "evidence": "The use of the else clause is better than adding additional code to the try clause because it avoids accidentally\ncatching an exception that wasn’t raised by the code being protected by the try ... except statement."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p072:paragraph:002",
+        "text": "If a finally clause is present, the finally clause will execute as the last task before the try statement completes.\nThe finally clause runs whether or not the try statement produces an exception. The following points discuss\nmore complex cases when an exception occurs:\n\n• If an exception occurs during execution of the try clause, the exception may be handled by an except clause.\nIf the exception is not handled by an except clause, the exception is re-raised after the finally clause has",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 72,
+        "metadata": {
+          "category": "exceptions",
+          "release": "3.13.7",
+          "chunking": "paragraph",
+          "paragraph_group": 2,
+          "extraction_status": "ok"
+        },
+        "score": 0.55652058,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p026:paragraph:001",
+        "text": "One way to think of the else clause is to imagine it paired with the if inside the loop. As the loop executes, it will\nrun a sequence like if/if/if/else. The if is inside the loop, encountered a number of times. If the condition is ever\ntrue, a break will happen. If the condition is never true, the else clause outside the loop will execute.\n\nWhen used with a loop, the else clause has more in common with the else clause of a try statement than it does\nwith that of if statements: a try statement’s else clause runs when no exception occurs, and a loop’s else clause\nruns when no break occurs. For more on the try statement and exceptions, see Handling Exceptions.\n\n4.6 pass Statements\n\nThe pass statement does nothing. It can be used when a statement is required syntactically but the program requires\nno action. For example:\n\n>>> while True:\n...\npass\n# Busy-wait for keyboard interrupt (Ctrl+C)\n...\n\nThis is commonly used for creating minimal classes:\n\n>>> class MyEmptyClass:\n...\npass\n...",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 26,
+        "metadata": {
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "paragraph_group": 1,
+          "category": "control_flow",
+          "release": "3.13.7"
+        },
+        "score": 0.55480552,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p068:paragraph:002",
+        "text": "• If an exception occurs during execution of the try clause, the rest of the clause is skipped. Then, if its type\nmatches the exception named after the except keyword, the except clause is executed, and then execution\ncontinues after the try/except block.\n\n• If an exception occurs which does not match the exception named in the except clause, it is passed on to outer\ntry statements; if no handler is found, it is an unhandled exception and execution stops with an error message.\n\nA try statement may have more than one except clause, to specify handlers for different exceptions. At most one\nhandler will be executed. Handlers only handle exceptions that occur in the corresponding try clause, not in other\nhandlers of the same try statement. An except clause may name multiple exceptions as a parenthesized tuple, for\nexample:\n\n... except (RuntimeError, TypeError, NameError):\n...\npass",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 68,
+        "metadata": {
+          "release": "3.13.7",
+          "category": "exceptions",
+          "chunking": "paragraph",
+          "paragraph_group": 2,
+          "extraction_status": "ok"
+        },
+        "score": 0.55423474,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p072:paragraph:002",
+      "python-tutorial-3.13.7:p026:paragraph:001",
+      "python-tutorial-3.13.7:p068:paragraph:002"
+    ],
+    "context_chars": 2620,
+    "hit1": false,
+    "hit3": false,
+    "context_hit": false,
+    "elapsed_ms": 9.071500040590763
+  },
+  {
+    "query_id": "q15",
+    "split": "dev",
+    "query": "Does a finally clause run when the try statement produces no exception?",
+    "filter": null,
+    "top_k": 3,
+    "context_budget_chars": 3500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 72,
+        "evidence": "The finally clause runs whether or not the try statement produces an exception."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p072:paragraph:002",
+        "text": "If a finally clause is present, the finally clause will execute as the last task before the try statement completes.\nThe finally clause runs whether or not the try statement produces an exception. The following points discuss\nmore complex cases when an exception occurs:\n\n• If an exception occurs during execution of the try clause, the exception may be handled by an except clause.\nIf the exception is not handled by an except clause, the exception is re-raised after the finally clause has",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 72,
+        "metadata": {
+          "category": "exceptions",
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "paragraph_group": 2
+        },
+        "score": 0.86894602,
+        "strategy": "dense_chroma",
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p068:paragraph:002",
+        "text": "• If an exception occurs during execution of the try clause, the rest of the clause is skipped. Then, if its type\nmatches the exception named after the except keyword, the except clause is executed, and then execution\ncontinues after the try/except block.\n\n• If an exception occurs which does not match the exception named in the except clause, it is passed on to outer\ntry statements; if no handler is found, it is an unhandled exception and execution stops with an error message.\n\nA try statement may have more than one except clause, to specify handlers for different exceptions. At most one\nhandler will be executed. Handlers only handle exceptions that occur in the corresponding try clause, not in other\nhandlers of the same try statement. An except clause may name multiple exceptions as a parenthesized tuple, for\nexample:\n\n... except (RuntimeError, TypeError, NameError):\n...\npass",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 68,
+        "metadata": {
+          "extraction_status": "ok",
+          "paragraph_group": 2,
+          "release": "3.13.7",
+          "category": "exceptions",
+          "chunking": "paragraph"
+        },
+        "score": 0.62275827,
+        "strategy": "dense_chroma",
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p073:paragraph:000",
+        "text": "been executed.\n\n• An exception could occur during execution of an except or else clause. Again, the exception is re-raised\nafter the finally clause has been executed.\n\n• If the finally clause executes a break, continue or return statement, exceptions are not re-raised.\n\n• If the try statement reaches a break, continue or return statement, the finally clause will execute just\nprior to the break, continue or return statement’s execution.\n\n• If a finally clause includes a return statement, the returned value will be the one from the finally\nclause’s return statement, not the value from the try clause’s return statement.\n\nFor example:\n\n>>> def bool_return():\n...\ntry:\n...\nreturn True\n...\nfinally:\n...\nreturn False\n...\n>>> bool_return()\nFalse\n\nA more complicated example:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 73,
+        "metadata": {
+          "extraction_status": "ok",
+          "category": "exceptions",
+          "release": "3.13.7",
+          "chunking": "paragraph",
+          "paragraph_group": 0
+        },
+        "score": 0.5494411,
+        "strategy": "dense_chroma",
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p072:paragraph:002",
+      "python-tutorial-3.13.7:p068:paragraph:002",
+      "python-tutorial-3.13.7:p073:paragraph:000"
+    ],
+    "context_chars": 2401,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 7.425900083035231
+  }
+]

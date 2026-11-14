@@ -1,0 +1,77 @@
+{
+  "selection_criterion": "maximize hit3, then hit1, then context_hit, then minimize median_ms",
+  "summaries": [
+    {
+      "name": "tfidf_top3",
+      "role": "baseline",
+      "split": "dev",
+      "n": 15,
+      "top_k": 3,
+      "context_budget_chars": 3500,
+      "uses_question_filter": false,
+      "hit1": 9,
+      "hit3": 13,
+      "context_hit": 13,
+      "median_ms": 0.622,
+      "service_cost_usd": 0
+    },
+    {
+      "name": "dense_top3",
+      "role": "method",
+      "split": "dev",
+      "n": 15,
+      "top_k": 3,
+      "context_budget_chars": 3500,
+      "uses_question_filter": false,
+      "hit1": 8,
+      "hit3": 13,
+      "context_hit": 13,
+      "median_ms": 7.214,
+      "service_cost_usd": 0
+    },
+    {
+      "name": "hybrid_rrf_top3",
+      "role": "method",
+      "split": "dev",
+      "n": 15,
+      "top_k": 3,
+      "context_budget_chars": 3500,
+      "uses_question_filter": false,
+      "hit1": 9,
+      "hit3": 13,
+      "context_hit": 13,
+      "median_ms": 8.728,
+      "service_cost_usd": 0
+    },
+    {
+      "name": "dense_top5_filter",
+      "role": "improvement",
+      "split": "dev",
+      "n": 15,
+      "top_k": 5,
+      "context_budget_chars": 5500,
+      "uses_question_filter": true,
+      "hit1": 8,
+      "hit3": 13,
+      "context_hit": 14,
+      "median_ms": 7.56,
+      "service_cost_usd": 0
+    },
+    {
+      "name": "hybrid_rrf_top5_filter",
+      "role": "improvement",
+      "split": "dev",
+      "n": 15,
+      "top_k": 5,
+      "context_budget_chars": 5500,
+      "uses_question_filter": true,
+      "hit1": 9,
+      "hit3": 13,
+      "context_hit": 14,
+      "median_ms": 8.177,
+      "service_cost_usd": 0
+    }
+  ],
+  "selected_config": "hybrid_rrf_top5_filter",
+  "test_accessed": false
+}

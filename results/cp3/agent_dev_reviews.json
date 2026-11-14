@@ -1,0 +1,19 @@
+[
+  {"query_id":"q01","answer_grade":2,"citation_support":[true],"reason":"Correct sys.argv answer; cited chunk states it directly."},
+  {"query_id":"q02","answer_grade":2,"citation_support":[true],"reason":"Correct immutability explanation with direct support."},
+  {"query_id":"q03","answer_grade":2,"citation_support":[true],"reason":"Correct append behavior with direct support."},
+  {"query_id":"q04","answer_grade":2,"citation_support":[true],"reason":"Correct one-time default evaluation explanation."},
+  {"query_id":"q05","answer_grade":2,"citation_support":[true],"reason":"Correct ordering rule with direct support."},
+  {"query_id":"q06","answer_grade":0,"citation_support":[false],"reason":"Answer says yes although the cited evidence says tuples are immutable."},
+  {"query_id":"q07","answer_grade":2,"citation_support":[true],"reason":"Both requested set uses are correct and supported."},
+  {"query_id":"q08","answer_grade":0,"citation_support":[false],"reason":"Answer incorrectly says dictionaries can be keys and does not state the immutable-key rule."},
+  {"query_id":"q09","answer_grade":0,"citation_support":[false],"reason":"Answer does not state that the script directory precedes the standard-library path."},
+  {"query_id":"q10","answer_grade":0,"citation_support":[false],"reason":"Answer says relative imports instead of __all__ in __init__.py; gold was absent from selected context."},
+  {"query_id":"q11","answer_grade":1,"citation_support":[false],"reason":"Answer includes dump but incorrectly presents dumps as also serializing directly to the open file."},
+  {"query_id":"q12","answer_grade":2,"citation_support":[true],"reason":"Correctly states closure even when an exception occurs."},
+  {"query_id":"q13","answer_grade":0,"citation_support":[false],"reason":"Answer proposes separate except clauses rather than one parenthesized tuple."},
+  {"query_id":"q14","answer_grade":0,"citation_support":[false],"reason":"Retrieved and answered about loop else rather than try else."},
+  {"query_id":"q15","answer_grade":1,"citation_support":[true],"reason":"The answer says it runs but omits the explicit whether-or-not condition."},
+  {"query_id":"q21","citation_support":[],"abstention_correct":true,"reason":"Corpus does not specify pip's default connection timeout."},
+  {"query_id":"q22","citation_support":[],"abstention_correct":true,"reason":"Corpus does not document pytest's rerun-failed option."}
+]

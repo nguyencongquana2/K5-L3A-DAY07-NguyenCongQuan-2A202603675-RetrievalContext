@@ -69,6 +69,23 @@ $env:TRANSFORMERS_OFFLINE='1'
 python scripts\run_cp2_agent.py
 ```
 
+### Checkpoint 3 — hoàn thành
+
+Ba phương pháp retrieval đã được benchmark trên cùng 15 câu dev có đáp án:
+TF-IDF, dense Chroma và hybrid RRF. Hai cấu hình cải thiện thử top-5, metadata
+filter và context budget 5.500 ký tự. Kết quả và trace nằm trong
+[`results/cp3`](results/cp3).
+
+Cấu hình được khóa trước khi chạy test là `hybrid_rrf_top5_filter`: Hit@1
+`9/15`, Evidence Hit@3 `13/15`, Context Evidence Rate `14/15`. Xem phân tích
+lỗi tại [`results/cp3/error_analysis.md`](results/cp3/error_analysis.md).
+
+```powershell
+python scripts\run_cp3_experiments.py
+python scripts\run_cp3_agent_dev.py
+python starter\agent_metrics.py --cases data\questions.json --traces results\cp3\agent_dev_traces.json --reviews results\cp3\agent_dev_reviews.json --split dev --output results\cp3\agent_dev_summary.json
+```
+
 ![Các bước thử nghiệm trên dev và đánh giá trên test](assets/experiment-loop.svg)
 
 Nộp code, cách chạy, cấu hình, benchmark, trace và [báo cáo](report/individual/MSSV_HoTen.md). Thời gian ở [checkpoints](CHECKPOINTS.md) là gợi ý, có thể điều chỉnh theo lớp và phạm vi thử nghiệm.

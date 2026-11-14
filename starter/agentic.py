@@ -62,7 +62,8 @@ def run_agent(question: str, controller: Controller, retriever: Retriever, *,
             # Send only the latest cumulative context; avoid multiplying the budget.
             history = [{'tool': 'search', 'queries': [e['query'] for e in events if e['event'] == 'search'],
                         'context': context, 'context_ids': ids,
-                        'context_scores': {c['id']: c.get('score') for c in candidates if c['id'] in ids},
+                        'context_scores': {c['id']: c.get('answer_score', c.get('score'))
+                                           for c in candidates if c['id'] in ids},
                         'context_chunks': {c['id']: c['text'] for c in candidates if c['id'] in ids}}]
         elif action.get('action') == 'answer':
             answer, citations = action.get('answer'), action.get('citations')
