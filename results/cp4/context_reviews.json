@@ -1,0 +1,12 @@
+[
+  {"configuration":"tfidf_top3","query_id":"q16","grade":2,"reason":"Full class/instance variable evidence is present with source."},
+  {"configuration":"tfidf_top3","query_id":"q17","grade":0,"reason":"Iterator exhaustion evidence is absent from baseline context."},
+  {"configuration":"tfidf_top3","query_id":"q18","grade":2,"reason":"Exact venv command is present with source."},
+  {"configuration":"tfidf_top3","query_id":"q19","grade":0,"reason":"The labeled page-116 evidence is absent from baseline context."},
+  {"configuration":"tfidf_top3","query_id":"q20","grade":2,"reason":"Full doctest evidence is present with source."},
+  {"configuration":"hybrid_rrf_top5_filter","query_id":"q16","grade":2,"reason":"Full class/instance variable evidence is present."},
+  {"configuration":"hybrid_rrf_top5_filter","query_id":"q17","grade":2,"reason":"StopIteration evidence is present at rank 1."},
+  {"configuration":"hybrid_rrf_top5_filter","query_id":"q18","grade":2,"reason":"Exact venv command is present."},
+  {"configuration":"hybrid_rrf_top5_filter","query_id":"q19","grade":2,"reason":"Page-116 0.1 versus 0.3 evidence is present in top 3."},
+  {"configuration":"hybrid_rrf_top5_filter","query_id":"q20","grade":2,"reason":"Full doctest evidence is present."}
+]

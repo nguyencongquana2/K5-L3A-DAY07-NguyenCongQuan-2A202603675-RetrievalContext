@@ -1,0 +1,9 @@
+[
+  {"query_id":"q16","answer_grade":2,"citation_support":[true],"reason":"Correct distinction and direct supporting citation."},
+  {"query_id":"q17","answer_grade":1,"citation_support":[true],"reason":"Describes exhaustion through __next__, but omits that StopIteration is raised."},
+  {"query_id":"q18","answer_grade":2,"citation_support":[true],"reason":"Includes the exact venv command; surrounding explanation is supported."},
+  {"query_id":"q19","answer_grade":2,"citation_support":[true],"reason":"Correctly attributes the failed equality to binary floating-point representation."},
+  {"query_id":"q20","answer_grade":2,"citation_support":[true],"reason":"Correct doctest behavior with direct support."},
+  {"query_id":"q23","citation_support":[false],"abstention_correct":false,"reason":"Hallucinates NumPy float64 from a generic binary-floating-point passage."},
+  {"query_id":"q24","citation_support":[],"abstention_correct":true,"reason":"Correctly abstains because SQLAlchemy QueuePool is absent from the corpus."}
+]

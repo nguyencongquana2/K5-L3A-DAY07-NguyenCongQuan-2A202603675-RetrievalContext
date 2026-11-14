@@ -28,6 +28,20 @@ Index một tài liệu thực tế từ **100 trang** có bảng, ảnh và bi�
 3. Dùng hoặc thay thế [starter](starter/README.md); bạn cần kết nối model và vector store thật.
 4. Chạy `python -m unittest discover -s tests -v`. Test mock chỉ kiểm tra code, không phải benchmark agent thật.
 
+### Cài đặt cho bài làm này
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe scripts\validate_cp1.py
+.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+Lần chạy agent đầu tiên sẽ tải `all-MiniLM-L6-v2` và
+`Qwen2.5-0.5B-Instruct`. Không cần API key; cần đủ dung lượng cache model và
+RAM để chạy CPU. Các lần sau có thể đặt `HF_HUB_OFFLINE=1` và
+`TRANSFORMERS_OFFLINE=1`.
+
 ## Tiến độ cá nhân
 
 ### Checkpoint 1 — hoàn thành
@@ -85,6 +99,22 @@ python scripts\run_cp3_experiments.py
 python scripts\run_cp3_agent_dev.py
 python starter\agent_metrics.py --cases data\questions.json --traces results\cp3\agent_dev_traces.json --reviews results\cp3\agent_dev_reviews.json --split dev --output results\cp3\agent_dev_summary.json
 ```
+
+### Checkpoint 4 — hoàn thành
+
+Sau khi khóa cấu hình trên dev, baseline và `hybrid_rrf_top5_filter` được chạy
+trên cùng 7 câu test. Kết quả retrieval của cấu hình chọn: Hit@1 `4/5`, Evidence
+Hit@3 `5/5`, Context Evidence Rate `5/5`; baseline lần lượt là `3/5`, `3/5`,
+`3/5`. Toàn bộ trace, nhãn thủ công và summary nằm trong
+[`results/cp4`](results/cp4).
+
+```powershell
+python scripts\run_cp4_test.py
+python starter\agent_metrics.py --cases data\questions.json --traces results\cp4\baseline_agent_traces.json --reviews results\cp4\baseline_agent_reviews.json --split test --output results\cp4\baseline_agent_summary.json
+python starter\agent_metrics.py --cases data\questions.json --traces results\cp4\selected_agent_traces.json --reviews results\cp4\selected_agent_reviews.json --split test --output results\cp4\selected_agent_summary.json
+```
+
+Test không được dùng để chỉnh lại prompt, threshold, retrieval hoặc context.
 
 ![Các bước thử nghiệm trên dev và đánh giá trên test](assets/experiment-loop.svg)
 

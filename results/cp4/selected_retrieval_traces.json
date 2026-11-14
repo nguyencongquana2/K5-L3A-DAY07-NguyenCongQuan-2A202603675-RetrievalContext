@@ -1,0 +1,791 @@
+[
+  {
+    "query_id": "q16",
+    "split": "test",
+    "query": "What is the intended difference between class variables and instance variables?",
+    "filter": null,
+    "top_k": 5,
+    "context_budget_chars": 5500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 84,
+        "evidence": "instance variables are for data unique to each instance and class variables are for attributes and\nmethods shared by all instances of the class"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p084:paragraph:000",
+        "text": "9.3.5 Class and Instance Variables\n\nGenerally speaking, instance variables are for data unique to each instance and class variables are for attributes and\nmethods shared by all instances of the class:\n\nclass Dog:\n\nkind = 'canine'\n# class variable shared by all instances\n\ndef __init__(self, name):\n\nself.name = name\n# instance variable unique to each instance\n\n>>> d = Dog('Fido')\n>>> e = Dog('Buddy')\n>>> d.kind\n# shared by all dogs\n'canine'\n>>> e.kind\n# shared by all dogs\n'canine'\n>>> d.name\n# unique to d\n'Fido'\n>>> e.name\n# unique to e\n'Buddy'\n\nAs discussed in A Word About Names and Objects, shared data can have possibly surprising effects with involving\nmutable objects such as lists and dictionaries. For example, the tricks list in the following code should not be used as\na class variable because just a single list would be shared by all Dog instances:\n\nclass Dog:\n\ntricks = []\n# mistaken use of a class variable\n\ndef __init__(self, name):\n\nself.name = name\n\ndef add_trick(self, trick):",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 84,
+        "metadata": {
+          "chunking": "paragraph",
+          "extraction_status": "ok",
+          "category": "classes",
+          "release": "3.13.7",
+          "paragraph_group": 0
+        },
+        "score": 0.03278689,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.65405315,
+        "ranks": {
+          "dense": 1,
+          "lexical": 1
+        },
+        "component_scores": {
+          "dense": 0.65405315,
+          "lexical": 0.1982929221592604
+        },
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p082:paragraph:001",
+        "text": "When a class definition is left normally (via the end), a class object is created. This is basically a wrapper around the\ncontents of the namespace created by the class definition; we’ll learn more about class objects in the next section. The\noriginal local scope (the one in effect just before the class definition was entered) is reinstated, and the class object is\nbound here to the class name given in the class definition header (ClassName in the example).\n\n9.3.2 Class Objects\n\nClass objects support two kinds of operations: attribute references and instantiation.\n\nAttribute references use the standard syntax used for all attribute references in Python: obj.name. Valid attribute\nnames are all the names that were in the class’s namespace when the class object was created. So, if the class definition\nlooked like this:\n\nclass MyClass:\n\n\"\"\"A simple example class\"\"\"\ni = 12345\n\ndef f(self):\n\nreturn 'hello world'",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 82,
+        "metadata": {
+          "paragraph_group": 1,
+          "release": "3.13.7",
+          "category": "classes",
+          "chunking": "paragraph",
+          "extraction_status": "ok"
+        },
+        "score": 0.03175403,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.50591159,
+        "ranks": {
+          "dense": 4,
+          "lexical": 2
+        },
+        "component_scores": {
+          "dense": 0.50591159,
+          "lexical": 0.18908045915465438
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p083:paragraph:000",
+        "text": "(continued from previous page)\n\n...\n>>> x = Complex(3.0, -4.5)\n>>> x.r, x.i\n(3.0, -4.5)\n\n9.3.3 Instance Objects\n\nNow what can we do with instance objects? The only operations understood by instance objects are attribute references. There are two kinds of valid attribute names: data attributes and methods.\n\ndata attributes correspond to “instance variables” in Smalltalk, and to “data members” in C++. Data attributes need\nnot be declared; like local variables, they spring into existence when they are first assigned to. For example, if x is\nthe instance of MyClass created above, the following piece of code will print the value 16, without leaving a trace:\n\nx.counter = 1\nwhile x.counter < 10:\n\nx.counter = x.counter * 2\nprint(x.counter)\ndel x.counter\n\nThe other kind of instance attribute reference is a method. A method is a function that “belongs to” an object.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 83,
+        "metadata": {
+          "category": "classes",
+          "release": "3.13.7",
+          "chunking": "paragraph",
+          "paragraph_group": 0,
+          "extraction_status": "ok"
+        },
+        "score": 0.03174603,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.51282191,
+        "ranks": {
+          "dense": 3,
+          "lexical": 3
+        },
+        "component_scores": {
+          "dense": 0.51282191,
+          "lexical": 0.17711964944288894
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p082:paragraph:002",
+        "text": "then MyClass.i and MyClass.f are valid attribute references, returning an integer and a function object, respectively. Class attributes can also be assigned to, so you can change the value of MyClass.i by assignment. __doc__\nis also a valid attribute, returning the docstring belonging to the class: \"A simple example class\".\n\nClass instantiation uses function notation. Just pretend that the class object is a parameterless function that returns a\nnew instance of the class. For example (assuming the above class):\n\nx = MyClass()\n\ncreates a new instance of the class and assigns this object to the local variable x.\n\nThe instantiation operation (“calling” a class object) creates an empty object. Many classes like to create objects with\ninstances customized to a specific initial state. Therefore a class may define a special method named __init__(),\nlike this:\n\ndef __init__(self):\n\nself.data = []",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 82,
+        "metadata": {
+          "paragraph_group": 2,
+          "category": "classes",
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "release": "3.13.7"
+        },
+        "score": 0.03100962,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.50265938,
+        "ranks": {
+          "dense": 5,
+          "lexical": 4
+        },
+        "component_scores": {
+          "dense": 0.50265938,
+          "lexical": 0.17521756053300153
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p083:paragraph:003",
+        "text": "In general, methods work as follows. When a non-data attribute of an instance is referenced, the instance’s class is\nsearched. If the name denotes a valid class attribute that is a function object, references to both the instance object\nand the function object are packed into a method object. When the method object is called with an argument list, a\nnew argument list is constructed from the instance object and the argument list, and the function object is called with\nthis new argument list.\n\n9.3. A First Look at Classes\n77",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 83,
+        "metadata": {
+          "chunking": "paragraph",
+          "paragraph_group": 3,
+          "category": "classes",
+          "release": "3.13.7",
+          "extraction_status": "ok"
+        },
+        "score": 0.03030999,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.48288703,
+        "ranks": {
+          "dense": 7,
+          "lexical": 5
+        },
+        "component_scores": {
+          "dense": 0.48288703,
+          "lexical": 0.17428088795993965
+        },
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p084:paragraph:000",
+      "python-tutorial-3.13.7:p082:paragraph:001",
+      "python-tutorial-3.13.7:p083:paragraph:000",
+      "python-tutorial-3.13.7:p082:paragraph:002",
+      "python-tutorial-3.13.7:p083:paragraph:003"
+    ],
+    "context_chars": 4626,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 17.67509989440441
+  },
+  {
+    "query_id": "q17",
+    "split": "test",
+    "query": "How does a Python for loop know that an iterator is exhausted?",
+    "filter": null,
+    "top_k": 5,
+    "context_budget_chars": 5500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 89,
+        "evidence": "When there are no more\nelements, __next__() raises a StopIteration exception which tells the for loop to terminate."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p089:paragraph:000",
+        "text": "9.8 Iterators\n\nBy now you have probably noticed that most container objects can be looped over using a for statement:\n\nfor element in [1, 2, 3]:\n\nprint(element)\nfor element in (1, 2, 3):\n\nprint(element)\nfor key in {'one':1, 'two':2}:\n\nprint(key)\nfor char in \"123\":\n\nprint(char)\nfor line in open(\"myfile.txt\"):\n\nprint(line, end='')\n\nThis style of access is clear, concise, and convenient. The use of iterators pervades and unifies Python. Behind\nthe scenes, the for statement calls iter() on the container object. The function returns an iterator object that\ndefines the method __next__() which accesses elements in the container one at a time. When there are no more\nelements, __next__() raises a StopIteration exception which tells the for loop to terminate. You can call the\n__next__() method using the next() built-in function; this example shows how it all works:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 89,
+        "metadata": {
+          "extraction_status": "ok",
+          "paragraph_group": 0,
+          "release": "3.13.7",
+          "category": "classes",
+          "chunking": "paragraph"
+        },
+        "score": 0.03177806,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.66183341,
+        "ranks": {
+          "dense": 1,
+          "lexical": 5
+        },
+        "component_scores": {
+          "dense": 0.66183341,
+          "lexical": 0.14336690696388008
+        },
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p025:paragraph:000",
+        "text": ">>> range(10)\nrange(0, 10)\n\nIn many ways the object returned by range() behaves as if it is a list, but in fact it isn’t. It is an object which returns\nthe successive items of the desired sequence when you iterate over it, but it doesn’t really make the list, thus saving\nspace.\n\nWe say such an object is iterable, that is, suitable as a target for functions and constructs that expect something from\nwhich they can obtain successive items until the supply is exhausted. We have seen that the for statement is such a\nconstruct, while an example of a function that takes an iterable is sum():\n\n>>> sum(range(4))\n# 0 + 1 + 2 + 3\n6\n\nLater we will see more functions that return iterables and take iterables as arguments. In chapter Data Structures, we\nwill discuss in more detail about list().\n\n4.4 break and continue Statements\n\nThe break statement breaks out of the innermost enclosing for or while loop:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 25,
+        "metadata": {
+          "category": "control_flow",
+          "extraction_status": "ok",
+          "release": "3.13.7",
+          "paragraph_group": 0,
+          "chunking": "paragraph"
+        },
+        "score": 0.03149802,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.50890815,
+        "ranks": {
+          "dense": 4,
+          "lexical": 3
+        },
+        "component_scores": {
+          "dense": 0.50890815,
+          "lexical": 0.1453076354799521
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p089:paragraph:001",
+        "text": ">>> s = 'abc'\n>>> it = iter(s)\n>>> it\n<str_iterator object at 0x10c90e650>\n>>> next(it)\n'a'\n>>> next(it)\n'b'\n>>> next(it)\n'c'\n>>> next(it)\nTraceback (most recent call last):\n\nFile \"<stdin>\", line 1, in <module>\n\nnext(it)\nStopIteration\n\nHaving seen the mechanics behind the iterator protocol, it is easy to add iterator behavior to your classes. Define an\n__iter__() method which returns an object with a __next__() method. If the class defines __next__(), then\n__iter__() can just return self:\n\nclass Reverse:\n\n\"\"\"Iterator for looping over a sequence backwards.\"\"\"\ndef __init__(self, data):\n\nself.data = data\nself.index = len(data)\n\ndef __iter__(self):\n\nreturn self\n\ndef __next__(self):\n\nif self.index == 0:\n\nraise StopIteration\nself.index = self.index - 1\nreturn self.data[self.index]\n\n>>> rev = Reverse('spam')\n>>> iter(rev)\n\n(continues on next page)\n\n9.8. Iterators\n83",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 89,
+        "metadata": {
+          "extraction_status": "ok",
+          "paragraph_group": 1,
+          "chunking": "paragraph",
+          "category": "classes",
+          "release": "3.13.7"
+        },
+        "score": 0.03105441,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.58723485,
+        "ranks": {
+          "dense": 2,
+          "lexical": 7
+        },
+        "component_scores": {
+          "dense": 0.58723485,
+          "lexical": 0.12626484648747865
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p026:paragraph:001",
+        "text": "One way to think of the else clause is to imagine it paired with the if inside the loop. As the loop executes, it will\nrun a sequence like if/if/if/else. The if is inside the loop, encountered a number of times. If the condition is ever\ntrue, a break will happen. If the condition is never true, the else clause outside the loop will execute.\n\nWhen used with a loop, the else clause has more in common with the else clause of a try statement than it does\nwith that of if statements: a try statement’s else clause runs when no exception occurs, and a loop’s else clause\nruns when no break occurs. For more on the try statement and exceptions, see Handling Exceptions.\n\n4.6 pass Statements\n\nThe pass statement does nothing. It can be used when a statement is required syntactically but the program requires\nno action. For example:\n\n>>> while True:\n...\npass\n# Busy-wait for keyboard interrupt (Ctrl+C)\n...\n\nThis is commonly used for creating minimal classes:\n\n>>> class MyEmptyClass:\n...\npass\n...",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 26,
+        "metadata": {
+          "extraction_status": "ok",
+          "source": "data/source/tutorial.pdf",
+          "category": "control_flow",
+          "chunking": "paragraph",
+          "paragraph_group": 1,
+          "release": "3.13.7"
+        },
+        "score": 0.01639344,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.0,
+        "ranks": {
+          "lexical": 1
+        },
+        "component_scores": {
+          "lexical": 0.17841196319621314
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p026:paragraph:000",
+        "text": "In either kind of loop, the else clause is not executed if the loop was terminated by a break. Of course, other ways\nof ending the loop early, such as a return or a raised exception, will also skip execution of the else clause.\n\nThis is exemplified in the following for loop, which searches for prime numbers:\n\n>>> for n in range(2, 10):\n...\nfor x in range(2, n):\n...\nif n % x == 0:\n...\nprint(n, 'equals', x, '*', n//x)\n...\nbreak\n...\nelse:\n...\n# loop fell through without finding a factor\n...\nprint(n, 'is a prime number')\n...\n2 is a prime number\n3 is a prime number\n4 equals 2 * 2\n5 is a prime number\n6 equals 2 * 3\n7 is a prime number\n8 equals 2 * 4\n9 equals 3 * 3\n\n(Yes, this is the correct code. Look closely: the else clause belongs to the for loop, not the if statement.)",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 26,
+        "metadata": {
+          "chunking": "paragraph",
+          "category": "control_flow",
+          "release": "3.13.7",
+          "source": "data/source/tutorial.pdf",
+          "paragraph_group": 0,
+          "extraction_status": "ok"
+        },
+        "score": 0.01612903,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.0,
+        "ranks": {
+          "lexical": 2
+        },
+        "component_scores": {
+          "lexical": 0.14969785478162112
+        },
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p089:paragraph:000",
+      "python-tutorial-3.13.7:p025:paragraph:000",
+      "python-tutorial-3.13.7:p089:paragraph:001",
+      "python-tutorial-3.13.7:p026:paragraph:001",
+      "python-tutorial-3.13.7:p026:paragraph:000"
+    ],
+    "context_chars": 4824,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 7.226299960166216
+  },
+  {
+    "query_id": "q18",
+    "split": "test",
+    "query": "In the virtual-environments section, which command creates an environment named tutorial-env?",
+    "filter": {
+      "category": "virtual_environments"
+    },
+    "top_k": 5,
+    "context_budget_chars": 5500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 107,
+        "evidence": "python -m venv tutorial-env"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p107:paragraph:001",
+        "text": "Different applications can then use different virtual environments. To resolve the earlier example of conflicting\nrequirements, application A can have its own virtual environment with version 1.0 installed while application B has\nanother virtual environment with version 2.0. If application B requires a library be upgraded to version 3.0, this will\nnot affect application A’s environment.\n\n12.2 Creating Virtual Environments\n\nThe module used to create and manage virtual environments is called venv. venv will install the Python version\nfrom which the command was run (as reported by the --version option). For instance, executing the command\nwith python3.12 will install version 3.12.\n\nTo create a virtual environment, decide upon a directory where you want to place it, and run the venv module as a\nscript with the directory path:\n\npython -m venv tutorial-env",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 107,
+        "metadata": {
+          "paragraph_group": 1,
+          "category": "virtual_environments",
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "extraction_status": "ok"
+        },
+        "score": 0.03252247,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.4333638,
+        "ranks": {
+          "dense": 2,
+          "lexical": 1
+        },
+        "component_scores": {
+          "dense": 0.4333638,
+          "lexical": 0.40422874999418223
+        },
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p107:paragraph:002",
+        "text": "This will create the tutorial-env directory if it doesn’t exist, and also create directories inside it containing a copy\nof the Python interpreter and various supporting files.\n\nA common directory location for a virtual environment is .venv. This name keeps the directory typically hidden\nin your shell and thus out of the way while giving it a name that explains why the directory exists. It also prevents\nclashing with .env environment variable definition files that some tooling supports.\n\nOnce you’ve created a virtual environment, you may activate it.\n\nOn Windows, run:\n\ntutorial-env\\Scripts\\activate\n\nOn Unix or MacOS, run:\n\nsource tutorial-env/bin/activate\n\n(This script is written for the bash shell. If you use the csh or fish shells, there are alternate activate.csh and\nactivate.fish scripts you should use instead.)",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 107,
+        "metadata": {
+          "category": "virtual_environments",
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "paragraph_group": 2
+        },
+        "score": 0.03226646,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.65501702,
+        "ranks": {
+          "dense": 1,
+          "lexical": 3
+        },
+        "component_scores": {
+          "dense": 0.65501702,
+          "lexical": 0.2884655968737593
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p108:paragraph:000",
+        "text": "Activating the virtual environment will change your shell’s prompt to show what virtual environment you’re using,\nand modify the environment so that running python will get you that particular version and installation of Python.\nFor example:\n\n$ source ~/envs/tutorial-env/bin/activate\n(tutorial-env) $ python\nPython 3.5.1 (default, May\n6 2016, 10:59:36)\n...\n>>> import sys\n>>> sys.path\n['', '/usr/local/lib/python35.zip', ...,\n'~/envs/tutorial-env/lib/python3.5/site-packages']\n>>>\n\nTo deactivate a virtual environment, type:\n\ndeactivate\n\ninto the terminal.\n\n12.3 Managing Packages with pip\n\nYou can install, upgrade, and remove packages using a program called pip. By default pip will install packages from\nthe Python Package Index. You can browse the Python Package Index by going to it in your web browser.\n\npip has a number of subcommands: “install”, “uninstall”, “freeze”, etc. (Consult the installing-index guide for\ncomplete documentation for pip.)",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 108,
+        "metadata": {
+          "paragraph_group": 0,
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "category": "virtual_environments",
+          "release": "3.13.7"
+        },
+        "score": 0.03200205,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.4264909,
+        "ranks": {
+          "dense": 3,
+          "lexical": 2
+        },
+        "component_scores": {
+          "dense": 0.4264909,
+          "lexical": 0.2949128667463731
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p108:paragraph:002",
+        "text": "(tutorial-env) $ python -m pip install --upgrade requests\nCollecting requests\nInstalling collected packages: requests\n\nFound existing installation: requests 2.6.0\n\nUninstalling requests-2.6.0:\n\nSuccessfully uninstalled requests-2.6.0\nSuccessfully installed requests-2.7.0\n\npython -m pip uninstall followed by one or more package names will remove the packages from the virtual\nenvironment.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 108,
+        "metadata": {
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "paragraph_group": 2,
+          "release": "3.13.7",
+          "category": "virtual_environments"
+        },
+        "score": 0.03100962,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.34781849,
+        "ranks": {
+          "dense": 4,
+          "lexical": 5
+        },
+        "component_scores": {
+          "dense": 0.34781849,
+          "lexical": 0.12381296594544716
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p109:paragraph:000",
+        "text": "python -m pip show will display information about a particular package:\n\n(tutorial-env) $ python -m pip show requests\n---\nMetadata-Version: 2.0\nName: requests\nVersion: 2.7.0\nSummary: Python HTTP for Humans.\nHome-page: http://python-requests.org\nAuthor: Kenneth Reitz\nAuthor-email: me@kennethreitz.com\nLicense: Apache 2.0\nLocation: /Users/akuchling/envs/tutorial-env/lib/python3.4/site-packages\nRequires:\n\npython -m pip list will display all of the packages installed in the virtual environment:\n\n(tutorial-env) $ python -m pip list\nnovas (3.1.1.3)\nnumpy (1.9.2)\npip (7.0.3)\nrequests (2.7.0)\nsetuptools (16.0)\n\npython -m pip freeze will produce a similar list of the installed packages, but the output uses the format that\npython -m pip install expects. A common convention is to put this list in a requirements.txt file:\n\n(tutorial-env) $ python -m pip freeze > requirements.txt\n(tutorial-env) $ cat requirements.txt\nnovas==3.1.1.3\nnumpy==1.9.2\nrequests==2.7.0",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 109,
+        "metadata": {
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "category": "virtual_environments",
+          "paragraph_group": 0,
+          "extraction_status": "ok"
+        },
+        "score": 0.03100962,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.34337443,
+        "ranks": {
+          "dense": 5,
+          "lexical": 4
+        },
+        "component_scores": {
+          "dense": 0.34337443,
+          "lexical": 0.20104929309275962
+        },
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p107:paragraph:001",
+      "python-tutorial-3.13.7:p107:paragraph:002",
+      "python-tutorial-3.13.7:p108:paragraph:000",
+      "python-tutorial-3.13.7:p108:paragraph:002",
+      "python-tutorial-3.13.7:p109:paragraph:000"
+    ],
+    "context_chars": 4411,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 9.205000009387732
+  },
+  {
+    "query_id": "q19",
+    "split": "test",
+    "query": "Why can adding 0.1 three times fail an equality comparison with 0.3?",
+    "filter": null,
+    "top_k": 5,
+    "context_budget_chars": 5500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 116,
+        "evidence": "since 0.1 is not exactly 1/10, summing three values of 0.1 may not\nyield exactly 0.3"
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p104:paragraph:002",
+        "text": "Exact representation enables the Decimal class to perform modulo calculations and equality tests that are unsuitable\nfor binary floating point:\n\n>>> Decimal('1.00') % Decimal('.10')\nDecimal('0.00')\n>>> 1.00 % 0.10\n0.09999999999999995\n\n>>> sum([Decimal('0.1')]*10) == Decimal('1.0')\nTrue\n>>> 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 == 1.0\nFalse\n\nThe decimal module provides arithmetic with as much precision as needed:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 104,
+        "metadata": {
+          "release": "3.13.7",
+          "paragraph_group": 2,
+          "chunking": "paragraph",
+          "category": "standard_library_advanced",
+          "extraction_status": "ok"
+        },
+        "score": 0.03278689,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.53213167,
+        "ranks": {
+          "dense": 1,
+          "lexical": 1
+        },
+        "component_scores": {
+          "dense": 0.53213167,
+          "lexical": 0.27127240042218614
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p116:paragraph:001",
+        "text": "Note that this is in the very nature of binary floating point: this is not a bug in Python, and it is not a bug in your\ncode either. You’ll see the same kind of thing in all languages that support your hardware’s floating-point arithmetic\n(although some languages may not display the difference by default, or in all output modes).\n\nFor more pleasant output, you may wish to use string formatting to produce a limited number of significant digits:\n\n>>> format(math.pi, '.12g')\n# give 12 significant digits\n'3.14159265359'\n\n>>> format(math.pi, '.2f')\n# give 2 digits after the point\n'3.14'\n\n>>> repr(math.pi)\n'3.141592653589793'\n\nIt’s important to realize that this is, in a real sense, an illusion: you’re simply rounding the display of the true machine\nvalue.\n\nOne illusion may beget another. For example, since 0.1 is not exactly 1/10, summing three values of 0.1 may not\nyield exactly 0.3, either:\n\n>>> 0.1 + 0.1 + 0.1 == 0.3\nFalse",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 116,
+        "metadata": {
+          "category": "floating_point",
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "chunking": "paragraph",
+          "paragraph_group": 1
+        },
+        "score": 0.03151365,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.52230024,
+        "ranks": {
+          "dense": 2,
+          "lexical": 5
+        },
+        "component_scores": {
+          "dense": 0.52230024,
+          "lexical": 0.1446973041011324
+        },
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p116:paragraph:002",
+        "text": "Also, since the 0.1 cannot get any closer to the exact value of 1/10 and 0.3 cannot get any closer to the exact value\nof 3/10, then pre-rounding with round() function cannot help:\n\n>>> round(0.1, 1) + round(0.1, 1) + round(0.1, 1) == round(0.3, 1)\nFalse\n\nThough the numbers cannot be made closer to their intended exact values, the math.isclose() function can be\nuseful for comparing inexact values:\n\n>>> math.isclose(0.1 + 0.1 + 0.1, 0.3)\nTrue\n\nAlternatively, the round() function can be used to compare rough approximations:\n\n>>> round(math.pi, ndigits=2) == round(22 / 7, ndigits=2)\nTrue",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 116,
+        "metadata": {
+          "category": "floating_point",
+          "chunking": "paragraph",
+          "paragraph_group": 2,
+          "release": "3.13.7",
+          "extraction_status": "ok"
+        },
+        "score": 0.03100962,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.49962837,
+        "ranks": {
+          "dense": 5,
+          "lexical": 4
+        },
+        "component_scores": {
+          "dense": 0.49962837,
+          "lexical": 0.1664624600718644
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p117:paragraph:002",
+        "text": "Since the representation is exact, it is useful for reliably porting values across different versions of Python (platform\nindependence) and exchanging data with other languages that support the same format (such as Java and C99).\n\nAnother helpful tool is the sum() function which helps mitigate loss-of-precision during summation. It uses extended\nprecision for intermediate rounding steps as values are added onto a running total. That can make a difference in\noverall accuracy so that the errors do not accumulate to the point where they affect the final total:\n\n>>> 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 == 1.0\nFalse\n>>> sum([0.1] * 10) == 1.0\nTrue\n\nThe math.fsum() goes further and tracks all of the “lost digits” as values are added onto a running total so that the\nresult has only a single rounding. This is slower than sum() but will be more accurate in uncommon cases where\nlarge magnitude inputs mostly cancel each other out leaving a final sum near zero:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 117,
+        "metadata": {
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "category": "floating_point",
+          "chunking": "paragraph",
+          "paragraph_group": 2
+        },
+        "score": 0.0305789,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.48350543,
+        "ranks": {
+          "dense": 8,
+          "lexical": 3
+        },
+        "component_scores": {
+          "dense": 0.48350543,
+          "lexical": 0.1751489502137554
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p118:paragraph:000",
+        "text": "(continued from previous page)\n\n8.042178034628478e-13\n>>> total = 0.0\n>>> for x in arr:\n...\ntotal += x\n# Multiple roundings in standard precision\n...\n>>> total\n# Straight addition has no correct digits!\n-0.0051575902860057365\n\n15.1 Representation Error\n\nThis section explains the “0.1” example in detail, and shows how you can perform an exact analysis of cases like this\nyourself. Basic familiarity with binary floating-point representation is assumed.\n\nRepresentation error refers to the fact that some (most, actually) decimal fractions cannot be represented exactly as\nbinary (base 2) fractions. This is the chief reason why Python (or Perl, C, C++, Java, Fortran, and many others) often\nwon’t display the exact decimal number you expect.",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 118,
+        "metadata": {
+          "paragraph_group": 0,
+          "category": "floating_point",
+          "chunking": "paragraph",
+          "release": "3.13.7",
+          "extraction_status": "ok"
+        },
+        "score": 0.03055037,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.5093562,
+        "ranks": {
+          "dense": 4,
+          "lexical": 7
+        },
+        "component_scores": {
+          "dense": 0.5093562,
+          "lexical": 0.11635967654917
+        },
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p104:paragraph:002",
+      "python-tutorial-3.13.7:p116:paragraph:001",
+      "python-tutorial-3.13.7:p116:paragraph:002",
+      "python-tutorial-3.13.7:p117:paragraph:002",
+      "python-tutorial-3.13.7:p118:paragraph:000"
+    ],
+    "context_chars": 4103,
+    "hit1": false,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 10.866399854421616
+  },
+  {
+    "query_id": "q20",
+    "split": "test",
+    "query": "What does the doctest module validate inside a program's docstrings?",
+    "filter": null,
+    "top_k": 5,
+    "context_budget_chars": 5500,
+    "gold": [
+      {
+        "source_id": "python-tutorial-3.13.7",
+        "page": 97,
+        "evidence": "The doctest module provides a tool for scanning a module and validating tests embedded in a program’s docstrings."
+      }
+    ],
+    "results": [
+      {
+        "id": "python-tutorial-3.13.7:p097:paragraph:000",
+        "text": "10.11 Quality Control\n\nOne approach for developing high quality software is to write tests for each function as it is developed and to run\nthose tests frequently during the development process.\n\nThe doctest module provides a tool for scanning a module and validating tests embedded in a program’s docstrings.\nTest construction is as simple as cutting-and-pasting a typical call along with its results into the docstring. This\nimproves the documentation by providing the user with an example and it allows the doctest module to make sure\nthe code remains true to the documentation:\n\ndef average(values):\n\n\"\"\"Computes the arithmetic mean of a list of numbers.\n\n>>> print(average([20, 30, 70]))\n40.0\n\"\"\"\nreturn sum(values) / len(values)\n\nimport doctest\ndoctest.testmod()\n# automatically validate the embedded tests\n\nThe unittest module is not as effortless as the doctest module, but it allows a more comprehensive set of tests\nto be maintained in a separate file:\n\nimport unittest",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 97,
+        "metadata": {
+          "chunking": "paragraph",
+          "extraction_status": "ok",
+          "category": "standard_library",
+          "release": "3.13.7",
+          "paragraph_group": 0
+        },
+        "score": 0.03278689,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.51297855,
+        "ranks": {
+          "dense": 1,
+          "lexical": 1
+        },
+        "component_scores": {
+          "dense": 0.51297855,
+          "lexical": 0.36361360995021286
+        },
+        "hit": true
+      },
+      {
+        "id": "python-tutorial-3.13.7:p037:paragraph:003",
+        "text": ">>> def my_function():\n...\n\"\"\"Do nothing, but document it.\n...\n...\nNo, really, it doesn't do anything.\n...\n\"\"\"\n...\npass\n...\n>>> print(my_function.__doc__)\nDo nothing, but document it.\n\nNo, really, it doesn't do anything.\n\n4.9.8 Function Annotations\n\nFunction annotations are completely optional metadata information about the types used by user-defined functions\n(see PEP 3107 and PEP 484 for more information).\n\nAnnotations are stored in the __annotations__ attribute of the function as a dictionary and have no effect on any\nother part of the function. Parameter annotations are defined by a colon after the parameter name, followed by an\nexpression evaluating to the value of the annotation. Return annotations are defined by a literal ->, followed by an\nexpression, between the parameter list and the colon denoting the end of the def statement. The following example\nhas a required argument, an optional argument, and the return value annotated:\n\n4.9. More on Defining Functions\n31",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 37,
+        "metadata": {
+          "extraction_status": "ok",
+          "category": "control_flow",
+          "release": "3.13.7",
+          "paragraph_group": 3,
+          "chunking": "paragraph"
+        },
+        "score": 0.01612903,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.5100987,
+        "ranks": {
+          "dense": 2
+        },
+        "component_scores": {
+          "dense": 0.5100987
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p052:paragraph:001",
+        "text": "Python checks the modification date of the source against the compiled version to see if it’s out of date and needs\nto be recompiled. This is a completely automatic process. Also, the compiled modules are platform-independent, so\nthe same library can be shared among systems with different architectures.\n\nPython does not check the cache in two circumstances. First, it always recompiles and does not store the result for\nthe module that’s loaded directly from the command line. Second, it does not check the cache if there is no source\nmodule. To support a non-source (compiled only) distribution, the compiled module must be in the source directory,\nand there must not be a source module.\n\nSome tips for experts:",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 52,
+        "metadata": {
+          "category": "modules",
+          "paragraph_group": 1,
+          "source": "data/source/tutorial.pdf",
+          "release": "3.13.7",
+          "extraction_status": "ok",
+          "chunking": "paragraph"
+        },
+        "score": 0.01612903,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.0,
+        "ranks": {
+          "lexical": 2
+        },
+        "component_scores": {
+          "lexical": 0.1297116280270255
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p026:paragraph:001",
+        "text": "One way to think of the else clause is to imagine it paired with the if inside the loop. As the loop executes, it will\nrun a sequence like if/if/if/else. The if is inside the loop, encountered a number of times. If the condition is ever\ntrue, a break will happen. If the condition is never true, the else clause outside the loop will execute.\n\nWhen used with a loop, the else clause has more in common with the else clause of a try statement than it does\nwith that of if statements: a try statement’s else clause runs when no exception occurs, and a loop’s else clause\nruns when no break occurs. For more on the try statement and exceptions, see Handling Exceptions.\n\n4.6 pass Statements\n\nThe pass statement does nothing. It can be used when a statement is required syntactically but the program requires\nno action. For example:\n\n>>> while True:\n...\npass\n# Busy-wait for keyboard interrupt (Ctrl+C)\n...\n\nThis is commonly used for creating minimal classes:\n\n>>> class MyEmptyClass:\n...\npass\n...",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 26,
+        "metadata": {
+          "extraction_status": "ok",
+          "source": "data/source/tutorial.pdf",
+          "category": "control_flow",
+          "chunking": "paragraph",
+          "paragraph_group": 1,
+          "release": "3.13.7"
+        },
+        "score": 0.01587302,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.0,
+        "ranks": {
+          "lexical": 3
+        },
+        "component_scores": {
+          "lexical": 0.12004083627307584
+        },
+        "hit": false
+      },
+      {
+        "id": "python-tutorial-3.13.7:p052:paragraph:002",
+        "text": "• You can use the -O or -OO switches on the Python command to reduce the size of a compiled module. The -O\nswitch removes assert statements, the -OO switch removes both assert statements and __doc__ strings. Since\nsome programs may rely on having these available, you should only use this option if you know what you’re\ndoing. “Optimized” modules have an opt- tag and are usually smaller. Future releases may change the effects\nof optimization.\n\n• A program doesn’t run any faster when it is read from a .pyc file than when it is read from a .py file; the only\nthing that’s faster about .pyc files is the speed with which they are loaded.\n\n• The module compileall can create .pyc files for all modules in a directory.\n\n• There is more detail on this process, including a flow chart of the decisions, in PEP 3147.\n\n6.2 Standard Modules",
+        "source_id": "python-tutorial-3.13.7",
+        "source": "data/source/tutorial.pdf",
+        "page": 52,
+        "metadata": {
+          "chunking": "paragraph",
+          "extraction_status": "ok",
+          "category": "modules",
+          "paragraph_group": 2,
+          "release": "3.13.7"
+        },
+        "score": 0.01587302,
+        "strategy": "hybrid_rrf",
+        "answer_score": 0.42669201,
+        "ranks": {
+          "dense": 3
+        },
+        "component_scores": {
+          "dense": 0.42669201
+        },
+        "hit": false
+      }
+    ],
+    "context_ids": [
+      "python-tutorial-3.13.7:p097:paragraph:000",
+      "python-tutorial-3.13.7:p037:paragraph:003",
+      "python-tutorial-3.13.7:p052:paragraph:001",
+      "python-tutorial-3.13.7:p026:paragraph:001",
+      "python-tutorial-3.13.7:p052:paragraph:002"
+    ],
+    "context_chars": 4918,
+    "hit1": true,
+    "hit3": true,
+    "context_hit": true,
+    "elapsed_ms": 9.947400074452162
+  }
+]
